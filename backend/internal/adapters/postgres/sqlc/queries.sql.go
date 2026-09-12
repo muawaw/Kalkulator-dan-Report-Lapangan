@@ -11,6 +11,65 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createMasterDataLapangan = `-- name: CreateMasterDataLapangan :one
+INSERT INTO "reportPKK"."MasterDataLapangan" (
+    nama_lapangan, harga_lapangan, harga_ballboy
+) VALUES (
+    $1, $2, $3
+)
+RETURNING id, nama_lapangan, harga_lapangan, harga_ballboy, created_at, updated_at
+`
+
+type CreateMasterDataLapanganParams struct {
+	NamaLapangan  string         `json:"nama_lapangan"`
+	HargaLapangan pgtype.Numeric `json:"harga_lapangan"`
+	HargaBallboy  pgtype.Numeric `json:"harga_ballboy"`
+}
+
+func (q *Queries) CreateMasterDataLapangan(ctx context.Context, arg CreateMasterDataLapanganParams) (ReportPKKMasterDataLapangan, error) {
+	row := q.db.QueryRow(ctx, createMasterDataLapangan, arg.NamaLapangan, arg.HargaLapangan, arg.HargaBallboy)
+	var i ReportPKKMasterDataLapangan
+	err := row.Scan(
+		&i.ID,
+		&i.NamaLapangan,
+		&i.HargaLapangan,
+		&i.HargaBallboy,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const createMasterDataReclub = `-- name: CreateMasterDataReclub :one
+INSERT INTO "reportPKK"."MasterDataReclub" (
+    jadwal_atau_hari, total_lama_jadwal, biaya_daftar
+) VALUES (
+    $1, $2, $3
+)
+RETURNING id, jadwal_atau_hari, total_lama_jadwal, biaya_daftar, biaya_per_jam, created_at, updated_at
+`
+
+type CreateMasterDataReclubParams struct {
+	JadwalAtauHari  string         `json:"jadwal_atau_hari"`
+	TotalLamaJadwal pgtype.Numeric `json:"total_lama_jadwal"`
+	BiayaDaftar     pgtype.Numeric `json:"biaya_daftar"`
+}
+
+func (q *Queries) CreateMasterDataReclub(ctx context.Context, arg CreateMasterDataReclubParams) (ReportPKKMasterDataReclub, error) {
+	row := q.db.QueryRow(ctx, createMasterDataReclub, arg.JadwalAtauHari, arg.TotalLamaJadwal, arg.BiayaDaftar)
+	var i ReportPKKMasterDataReclub
+	err := row.Scan(
+		&i.ID,
+		&i.JadwalAtauHari,
+		&i.TotalLamaJadwal,
+		&i.BiayaDaftar,
+		&i.BiayaPerJam,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const createReportKeuangan = `-- name: CreateReportKeuangan :one
 INSERT INTO "reportPKK"."ReportKeuangan" (
     tanggal, kas_in, kas_out, description
@@ -47,6 +106,26 @@ func (q *Queries) CreateReportKeuangan(ctx context.Context, arg CreateReportKeua
 	return i, err
 }
 
+const deleteMasterDataLapangan = `-- name: DeleteMasterDataLapangan :exec
+DELETE FROM "reportPKK"."MasterDataLapangan"
+WHERE id = $1
+`
+
+func (q *Queries) DeleteMasterDataLapangan(ctx context.Context, id int32) error {
+	_, err := q.db.Exec(ctx, deleteMasterDataLapangan, id)
+	return err
+}
+
+const deleteMasterDataReclub = `-- name: DeleteMasterDataReclub :exec
+DELETE FROM "reportPKK"."MasterDataReclub"
+WHERE id = $1
+`
+
+func (q *Queries) DeleteMasterDataReclub(ctx context.Context, id int32) error {
+	_, err := q.db.Exec(ctx, deleteMasterDataReclub, id)
+	return err
+}
+
 const deleteReportKeuangan = `-- name: DeleteReportKeuangan :exec
 DELETE FROM "reportPKK"."ReportKeuangan"
 WHERE id = $1
@@ -57,11 +136,127 @@ func (q *Queries) DeleteReportKeuangan(ctx context.Context, id int32) error {
 	return err
 }
 
+const getMasterDataLapangan = `-- name: GetMasterDataLapangan :many
+
+SELECT id, nama_lapangan, harga_lapangan, harga_ballboy, created_at, updated_at FROM "reportPKK"."MasterDataLapangan"
+ORDER BY id ASC
+`
+
+// ============================================================================
+// MasterDataLapangan CRUD
+// ============================================================================
+func (q *Queries) GetMasterDataLapangan(ctx context.Context) ([]ReportPKKMasterDataLapangan, error) {
+	rows, err := q.db.Query(ctx, getMasterDataLapangan)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ReportPKKMasterDataLapangan
+	for rows.Next() {
+		var i ReportPKKMasterDataLapangan
+		if err := rows.Scan(
+			&i.ID,
+			&i.NamaLapangan,
+			&i.HargaLapangan,
+			&i.HargaBallboy,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getMasterDataLapanganByID = `-- name: GetMasterDataLapanganByID :one
+SELECT id, nama_lapangan, harga_lapangan, harga_ballboy, created_at, updated_at FROM "reportPKK"."MasterDataLapangan"
+WHERE id = $1 LIMIT 1
+`
+
+func (q *Queries) GetMasterDataLapanganByID(ctx context.Context, id int32) (ReportPKKMasterDataLapangan, error) {
+	row := q.db.QueryRow(ctx, getMasterDataLapanganByID, id)
+	var i ReportPKKMasterDataLapangan
+	err := row.Scan(
+		&i.ID,
+		&i.NamaLapangan,
+		&i.HargaLapangan,
+		&i.HargaBallboy,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getMasterDataReclub = `-- name: GetMasterDataReclub :many
+
+SELECT id, jadwal_atau_hari, total_lama_jadwal, biaya_daftar, biaya_per_jam, created_at, updated_at FROM "reportPKK"."MasterDataReclub"
+ORDER BY id ASC
+`
+
+// ============================================================================
+// MasterDataReclub CRUD
+// ============================================================================
+func (q *Queries) GetMasterDataReclub(ctx context.Context) ([]ReportPKKMasterDataReclub, error) {
+	rows, err := q.db.Query(ctx, getMasterDataReclub)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ReportPKKMasterDataReclub
+	for rows.Next() {
+		var i ReportPKKMasterDataReclub
+		if err := rows.Scan(
+			&i.ID,
+			&i.JadwalAtauHari,
+			&i.TotalLamaJadwal,
+			&i.BiayaDaftar,
+			&i.BiayaPerJam,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getMasterDataReclubByID = `-- name: GetMasterDataReclubByID :one
+SELECT id, jadwal_atau_hari, total_lama_jadwal, biaya_daftar, biaya_per_jam, created_at, updated_at FROM "reportPKK"."MasterDataReclub"
+WHERE id = $1 LIMIT 1
+`
+
+func (q *Queries) GetMasterDataReclubByID(ctx context.Context, id int32) (ReportPKKMasterDataReclub, error) {
+	row := q.db.QueryRow(ctx, getMasterDataReclubByID, id)
+	var i ReportPKKMasterDataReclub
+	err := row.Scan(
+		&i.ID,
+		&i.JadwalAtauHari,
+		&i.TotalLamaJadwal,
+		&i.BiayaDaftar,
+		&i.BiayaPerJam,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const getReportKeuangan = `-- name: GetReportKeuangan :many
+
 SELECT id, tanggal, kas_in, kas_out, description, created_at, updated_at FROM "reportPKK"."ReportKeuangan"
 ORDER BY tanggal DESC
 `
 
+// ============================================================================
+// ReportKeuangan CRUD
+// ============================================================================
 func (q *Queries) GetReportKeuangan(ctx context.Context) ([]ReportPKKReportKeuangan, error) {
 	rows, err := q.db.Query(ctx, getReportKeuangan)
 	if err != nil {
@@ -104,6 +299,81 @@ func (q *Queries) GetReportKeuanganByID(ctx context.Context, id int32) (ReportPK
 		&i.KasIn,
 		&i.KasOut,
 		&i.Description,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const updateMasterDataLapangan = `-- name: UpdateMasterDataLapangan :one
+UPDATE "reportPKK"."MasterDataLapangan"
+SET 
+    nama_lapangan = $2,
+    harga_lapangan = $3,
+    harga_ballboy = $4,
+    updated_at = CURRENT_TIMESTAMP
+WHERE id = $1
+RETURNING id, nama_lapangan, harga_lapangan, harga_ballboy, created_at, updated_at
+`
+
+type UpdateMasterDataLapanganParams struct {
+	ID            int32          `json:"id"`
+	NamaLapangan  string         `json:"nama_lapangan"`
+	HargaLapangan pgtype.Numeric `json:"harga_lapangan"`
+	HargaBallboy  pgtype.Numeric `json:"harga_ballboy"`
+}
+
+func (q *Queries) UpdateMasterDataLapangan(ctx context.Context, arg UpdateMasterDataLapanganParams) (ReportPKKMasterDataLapangan, error) {
+	row := q.db.QueryRow(ctx, updateMasterDataLapangan,
+		arg.ID,
+		arg.NamaLapangan,
+		arg.HargaLapangan,
+		arg.HargaBallboy,
+	)
+	var i ReportPKKMasterDataLapangan
+	err := row.Scan(
+		&i.ID,
+		&i.NamaLapangan,
+		&i.HargaLapangan,
+		&i.HargaBallboy,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const updateMasterDataReclub = `-- name: UpdateMasterDataReclub :one
+UPDATE "reportPKK"."MasterDataReclub"
+SET 
+    jadwal_atau_hari = $2,
+    total_lama_jadwal = $3,
+    biaya_daftar = $4,
+    updated_at = CURRENT_TIMESTAMP
+WHERE id = $1
+RETURNING id, jadwal_atau_hari, total_lama_jadwal, biaya_daftar, biaya_per_jam, created_at, updated_at
+`
+
+type UpdateMasterDataReclubParams struct {
+	ID              int32          `json:"id"`
+	JadwalAtauHari  string         `json:"jadwal_atau_hari"`
+	TotalLamaJadwal pgtype.Numeric `json:"total_lama_jadwal"`
+	BiayaDaftar     pgtype.Numeric `json:"biaya_daftar"`
+}
+
+func (q *Queries) UpdateMasterDataReclub(ctx context.Context, arg UpdateMasterDataReclubParams) (ReportPKKMasterDataReclub, error) {
+	row := q.db.QueryRow(ctx, updateMasterDataReclub,
+		arg.ID,
+		arg.JadwalAtauHari,
+		arg.TotalLamaJadwal,
+		arg.BiayaDaftar,
+	)
+	var i ReportPKKMasterDataReclub
+	err := row.Scan(
+		&i.ID,
+		&i.JadwalAtauHari,
+		&i.TotalLamaJadwal,
+		&i.BiayaDaftar,
+		&i.BiayaPerJam,
 		&i.CreatedAt,
 		&i.UpdatedAt,
 	)

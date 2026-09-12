@@ -7,6 +7,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jackc/pgx/v5"
+	repo "github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/adapters/postgres/sqlc"
 	"github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/core"
 )
 
@@ -20,19 +22,35 @@ func (app *application) mount() http.Handler {
 
 	r.Use(middleware.Timeout(60 * time.Second)) // Set a timeout for all requests
 
-	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/api/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Status: OK"))
 	})
 
 	// Calculator HTTP Method
-	CalculatorHandler := core.NewHandler(nil)
-	r.Get("/calculator", CalculatorHandler.Calculator)
+	CalculatorHandler := core.NewHandler(core.NewService(nil))
+	r.Route("/api/calculator", func(r chi.Router) {
+		r.Get("/", CalculatorHandler.Calculator)
+	})
 
 	// Config HTTP Method
-	ConfigService := core.NewService()
+	ConfigService := core.NewService(repo.New(app.db))
 	ConfigHandler := core.NewHandler(ConfigService)
-	r.Get("/config", ConfigHandler.Config)
-	r.Post("/config", ConfigHandler.Config)
+	r.Route("/api/config", func(r chi.Router) {
+
+		r.Use(core.SecurityMiddleware)
+
+		r.Get("/lapangan", ConfigHandler.GetLapangan)
+		r.Get("/lapangan/detail", ConfigHandler.GetLapanganByID)
+		r.Post("/lapangan", ConfigHandler.CreateLapangan)
+		r.Put("/lapangan", ConfigHandler.UpdateLapangan)
+		r.Delete("/lapangan", ConfigHandler.DeleteLapangan)
+
+		r.Get("/reclub", ConfigHandler.GetReclub)
+		r.Get("/reclub/detail", ConfigHandler.GetReclubByID)
+		r.Post("/reclub", ConfigHandler.CreateReclub)
+		r.Put("/reclub", ConfigHandler.UpdateReclub)
+		r.Delete("/reclub", ConfigHandler.DeleteReclub)
+	})
 
 	return r
 }
@@ -52,6 +70,7 @@ func (app *application) run(h http.Handler) error {
 
 type application struct {
 	config config
+	db     *pgx.Conn
 }
 
 type config struct {

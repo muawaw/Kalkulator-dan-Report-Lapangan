@@ -9,10 +9,29 @@ import (
 )
 
 type Querier interface {
+	CreateMasterDataLapangan(ctx context.Context, arg CreateMasterDataLapanganParams) (ReportPKKMasterDataLapangan, error)
+	CreateMasterDataReclub(ctx context.Context, arg CreateMasterDataReclubParams) (ReportPKKMasterDataReclub, error)
 	CreateReportKeuangan(ctx context.Context, arg CreateReportKeuanganParams) (ReportPKKReportKeuangan, error)
+	DeleteMasterDataLapangan(ctx context.Context, id int32) error
+	DeleteMasterDataReclub(ctx context.Context, id int32) error
 	DeleteReportKeuangan(ctx context.Context, id int32) error
+	// ============================================================================
+	// MasterDataLapangan CRUD
+	// ============================================================================
+	GetMasterDataLapangan(ctx context.Context) ([]ReportPKKMasterDataLapangan, error)
+	GetMasterDataLapanganByID(ctx context.Context, id int32) (ReportPKKMasterDataLapangan, error)
+	// ============================================================================
+	// MasterDataReclub CRUD
+	// ============================================================================
+	GetMasterDataReclub(ctx context.Context) ([]ReportPKKMasterDataReclub, error)
+	GetMasterDataReclubByID(ctx context.Context, id int32) (ReportPKKMasterDataReclub, error)
+	// ============================================================================
+	// ReportKeuangan CRUD
+	// ============================================================================
 	GetReportKeuangan(ctx context.Context) ([]ReportPKKReportKeuangan, error)
 	GetReportKeuanganByID(ctx context.Context, id int32) (ReportPKKReportKeuangan, error)
+	UpdateMasterDataLapangan(ctx context.Context, arg UpdateMasterDataLapanganParams) (ReportPKKMasterDataLapangan, error)
+	UpdateMasterDataReclub(ctx context.Context, arg UpdateMasterDataReclubParams) (ReportPKKMasterDataReclub, error)
 	UpdateReportKeuangan(ctx context.Context, arg UpdateReportKeuanganParams) (ReportPKKReportKeuangan, error)
 }
 
