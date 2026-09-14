@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 	"github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/env"
 )
@@ -28,28 +29,34 @@ func main() {
 	}
 
 	// 1. Parse DSN into Config
-	connConfig, err := pgx.ParseConfig(config.db.dsn)
+	// connConfig, err := pgx.ParseConfig(config.db.dsn)
+	// if err != nil {
+	// 	slog.Error("Failed to parse database DSN", "error", err)
+	// 	return
+	// }
+	poolConfig, err := pgxpool.ParseConfig(config.db.dsn)
 	if err != nil {
 		slog.Error("Failed to parse database DSN", "error", err)
 		return
 	}
 
 	// 2. Force simple protocol to completely disable prepared statement caching
-	connConfig.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
+	// connConfig.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
+	poolConfig.ConnConfig.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
 
 	// 3. Connect using the modified config
-	conn, err := pgx.ConnectConfig(ctx, connConfig)
+	pool, err := pgxpool.NewWithConfig(ctx, poolConfig)
 	if err != nil {
 		slog.Error("Error connecting to the database", "error", err)
 		return
 	}
-	defer conn.Close(ctx)
+	defer pool.Close()
 
 	slog.Info("Connected to the DB", "dsn", config.db.dsn)
 
 	api := application{
 		config: config,
-		db:     conn,
+		db:     pool,
 	}
 
 	h := api.mount()

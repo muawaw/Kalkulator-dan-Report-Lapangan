@@ -7,6 +7,10 @@ import (
 
 func SecurityMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodOptions {
+			next.ServeHTTP(w, r)
+			return
+		}
 		// Set default Content-Type header for API responses
 		w.Header().Set("Content-Type", "application/json")
 

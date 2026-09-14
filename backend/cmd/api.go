@@ -7,13 +7,23 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/jackc/pgx/v5"
+	"github.com/go-chi/cors"
+	"github.com/jackc/pgx/v5/pgxpool"
 	repo "github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/adapters/postgres/sqlc"
 	"github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/core"
 )
 
 func (app *application) mount() http.Handler {
 	r := chi.NewRouter()
+
+	r.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token", "X-API-KEY"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300,
+	}))
 
 	r.Use(middleware.RequestID) // For Rate Limiting
 	r.Use(middleware.RealIP)    // For Rate Limiting and Tracing
@@ -70,7 +80,8 @@ func (app *application) run(h http.Handler) error {
 
 type application struct {
 	config config
-	db     *pgx.Conn
+	// db     *pgx.Conn
+	db *pgxpool.Pool
 }
 
 type config struct {
