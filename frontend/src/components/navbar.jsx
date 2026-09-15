@@ -9,7 +9,7 @@ export default function Navbar() {
     <div>
     {/* // Navbar */}
     <div className="flex items-center justify-between p-4 bg-pkk-green text-pkk-cream"> 
-      <Link to="/" className="text-xl font-bold">Logo</Link>
+      <Link to="/" className="text-md font-bold">PKK Tennis Community</Link>
 
       {/* Navbar Desktop component */}
       <div className="hidden sm:flex gap-4">
