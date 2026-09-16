@@ -36,12 +36,6 @@ func (app *application) mount() http.Handler {
 		w.Write([]byte("Status: OK"))
 	})
 
-	// Calculator HTTP Method
-	CalculatorHandler := core.NewHandler(core.NewService(nil))
-	r.Route("/api/calculator", func(r chi.Router) {
-		r.Get("/", CalculatorHandler.Calculator)
-	})
-
 	// Config HTTP Method
 	ConfigService := core.NewService(repo.New(app.db))
 	ConfigHandler := core.NewHandler(ConfigService)
@@ -60,6 +54,18 @@ func (app *application) mount() http.Handler {
 		r.Post("/reclub", ConfigHandler.CreateReclub)
 		r.Put("/reclub", ConfigHandler.UpdateReclub)
 		r.Delete("/reclub", ConfigHandler.DeleteReclub)
+	})
+
+	// Report Keuangan HTTP Routes
+	ReportHandler := core.NewHandler(ConfigService)
+	r.Route("/api/report-keuangan", func(r chi.Router) {
+		r.Use(core.SecurityMiddleware)
+
+		r.Post("/", ReportHandler.CreateReportKeuangan)
+		r.Get("/", ReportHandler.GetReportKeuangan)
+		r.Get("/{id}", ReportHandler.GetReportKeuanganByID) // <-- ADD THIS ROUTE
+		r.Put("/{id}", ReportHandler.UpdateReportKeuangan)
+		r.Delete("/{id}", ReportHandler.DeleteReportKeuangan)
 	})
 
 	return r

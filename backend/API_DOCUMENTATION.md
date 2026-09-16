@@ -63,6 +63,11 @@ Endpoints under `/api/config/*` are protected by `core.SecurityMiddleware`.
 | `POST` | `/api/config/reclub` | **Yes** | Create a new master data reclub |
 | `PUT` | `/api/config/reclub` | **Yes** | Update an existing master data reclub |
 | `DELETE` | `/api/config/reclub?id={id}` | **Yes** | Delete master data reclub by ID |
+| `POST` | `/api/report-keuangan/` | **Yes** | Create a new financial report |
+| `GET` | `/api/report-keuangan/` | **Yes** | Fetch all financial reports |
+| `GET` | `/api/report-keuangan/{id}` | **Yes** | Fetch a specific financial report by ID |
+| `PUT` | `/api/report-keuangan/{id}` | **Yes** | Update an existing financial report |
+| `DELETE` | `/api/report-keuangan/{id}` | **Yes** | Delete a financial report by ID |
 
 ---
 
@@ -461,6 +466,205 @@ Deletes a reclub record by its numeric ID.
 **Example cURL:**
 ```bash
 curl -X DELETE "http://localhost:8000/api/config/reclub?id=1" \
+  -H "X-API-KEY: TEST_API_KEY"
+```
+
+---
+
+### 5.4. Financial Report (`/api/report-keuangan`)
+
+#### 5.4.1. Create Financial Report
+Creates a new financial report entry with income and expense data.
+
+- **Method:** `POST`
+- **Path:** `/api/report-keuangan/`
+- **Headers:**
+  - `Content-Type: application/json`
+  - `X-API-KEY: <your-api-key>`
+- **Request Body (JSON):**
+  | Field | Type | Required | Description |
+  |---|---|:---:|---|
+  | `tanggal` | `string` | Yes | Date of the report (e.g., "2026-09-16") |
+  | `kas_in` | `number` | Yes | Cash inflow amount |
+  | `kas_out` | `number` | Yes | Cash outflow amount |
+  | `description` | `string` | Yes | Description of the transaction |
+
+  ```json
+  {
+    "tanggal": "2026-09-16",
+    "kas_in": 500000,
+    "kas_out": 150000,
+    "description": "Daily revenue from court rental"
+  }
+  ```
+- **Response:**
+  - **Status:** `201 Created`
+  - **Body (JSON):**
+    ```json
+    {
+      "id": "a7b2Nk5M",
+      "tanggal": "2026-09-16",
+      "kas_in": 500000,
+      "kas_out": 150000,
+      "description": "Daily revenue from court rental",
+      "created_at": "2026-09-16T10:30:00Z",
+      "updated_at": "2026-09-16T10:30:00Z"
+    }
+    ```
+
+**Example cURL:**
+```bash
+curl -X POST http://localhost:8000/api/report-keuangan/ \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: TEST_API_KEY" \
+  -d '{
+    "tanggal": "2026-09-16",
+    "kas_in": 500000,
+    "kas_out": 150000,
+    "description": "Daily revenue from court rental"
+  }'
+```
+
+---
+
+#### 5.4.2. Get All Financial Reports
+Retrieves a list of all financial reports.
+
+- **Method:** `GET`
+- **Path:** `/api/report-keuangan/`
+- **Headers:**
+  - `X-API-KEY: <your-api-key>`
+- **Response:**
+  - **Status:** `200 OK`
+  - **Body (JSON):**
+    ```json
+    [
+      {
+        "id": "a7b2Nk5M",
+        "tanggal": "2026-09-16",
+        "kas_in": 500000,
+        "kas_out": 150000,
+        "description": "Daily revenue from court rental",
+        "created_at": "2026-09-16T10:30:00Z",
+        "updated_at": "2026-09-16T10:30:00Z"
+      }
+    ]
+    ```
+
+**Example cURL:**
+```bash
+curl -X GET http://localhost:8000/api/report-keuangan/ \
+  -H "X-API-KEY: TEST_API_KEY"
+```
+
+---
+
+#### 5.4.3. Get Financial Report by ID
+Retrieves details of a specific financial report by its ID.
+
+- **Method:** `GET`
+- **Path:** `/api/report-keuangan/{id}`
+- **Path Parameters:**
+  - `id` (*required*, string): The masked ID of the report (e.g., `a7b2Nk5M`).
+- **Headers:**
+  - `X-API-KEY: <your-api-key>`
+- **Response:**
+  - **Status:** `200 OK`
+  - **Body (JSON):**
+    ```json
+    {
+      "id": "a7b2Nk5M",
+      "tanggal": "2026-09-16",
+      "kas_in": 500000,
+      "kas_out": 150000,
+      "description": "Daily revenue from court rental",
+      "created_at": "2026-09-16T10:30:00Z",
+      "updated_at": "2026-09-16T10:30:00Z"
+    }
+    ```
+- **Error Responses:**
+  - `400 Bad Request` if `id` is missing or invalid (`ID parameter is required` or `Invalid ID format`).
+  - `404 Not Found` if record does not exist (`Record not found`).
+
+**Example cURL:**
+```bash
+curl -X GET http://localhost:8000/api/report-keuangan/a7b2Nk5M \
+  -H "X-API-KEY: TEST_API_KEY"
+```
+
+---
+
+#### 5.4.4. Update Financial Report
+Updates an existing financial report record.
+
+- **Method:** `PUT`
+- **Path:** `/api/report-keuangan/{id}`
+- **Path Parameters:**
+  - `id` (*required*, string): The masked ID of the report to update.
+- **Headers:**
+  - `Content-Type: application/json`
+  - `X-API-KEY: <your-api-key>`
+- **Request Body (JSON):**
+  | Field | Type | Required | Description |
+  |---|---|:---:|---|
+  | `tanggal` | `string` | Yes | Updated date of the report |
+  | `kas_in` | `number` | Yes | Updated cash inflow amount |
+  | `kas_out` | `number` | Yes | Updated cash outflow amount |
+  | `description` | `string` | Yes | Updated description |
+
+  ```json
+  {
+    "tanggal": "2026-09-16",
+    "kas_in": 550000,
+    "kas_out": 200000,
+    "description": "Corrected daily revenue"
+  }
+  ```
+- **Response:**
+  - **Status:** `200 OK`
+  - **Body (JSON):**
+    ```json
+    {
+      "id": "a7b2Nk5M",
+      "tanggal": "2026-09-16",
+      "kas_in": 550000,
+      "kas_out": 200000,
+      "description": "Corrected daily revenue",
+      "created_at": "2026-09-16T10:30:00Z",
+      "updated_at": "2026-09-16T11:00:00Z"
+    }
+    ```
+
+**Example cURL:**
+```bash
+curl -X PUT http://localhost:8000/api/report-keuangan/a7b2Nk5M \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: TEST_API_KEY" \
+  -d '{
+    "tanggal": "2026-09-16",
+    "kas_in": 550000,
+    "kas_out": 200000,
+    "description": "Corrected daily revenue"
+  }'
+```
+
+---
+
+#### 5.4.5. Delete Financial Report
+Deletes a financial report record by its ID.
+
+- **Method:** `DELETE`
+- **Path:** `/api/report-keuangan/{id}`
+- **Path Parameters:**
+  - `id` (*required*, string): The masked ID of the report to delete.
+- **Headers:**
+  - `X-API-KEY: <your-api-key>`
+- **Response:**
+  - **Status:** `204 No Content` (empty body)
+
+**Example cURL:**
+```bash
+curl -X DELETE http://localhost:8000/api/report-keuangan/a7b2Nk5M \
   -H "X-API-KEY: TEST_API_KEY"
 ```
 

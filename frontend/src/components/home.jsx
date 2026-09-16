@@ -10,9 +10,9 @@ export default function Home() {
             <Link to="/calculator" className="w-full sm:w-64 py-4 px-6 bg-pkk-green text-pkk-cream text-center text-lg font-semibold rounded-xl hover:bg-pkk-lime hover:scale-103 transition-all duration-250 cursor-pointer shadow-md">
             Hitung Pendapatan
             </Link>
-            <div className="w-full sm:w-64 py-4 px-6 bg-pkk-green text-pkk-cream text-center text-lg font-semibold rounded-xl hover:bg-pkk-lime hover:scale-103 transition-all duration-250 cursor-pointer shadow-md">
-            Menu 2
-            </div>
+            <Link to="/dashboard" className="w-full sm:w-64 py-4 px-6 bg-pkk-green text-pkk-cream text-center text-lg font-semibold rounded-xl hover:bg-pkk-lime hover:scale-103 transition-all duration-250 cursor-pointer shadow-md">
+            Dashboard
+            </Link>
         </div>
     </div>
     );

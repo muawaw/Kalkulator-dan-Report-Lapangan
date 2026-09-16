@@ -4,6 +4,8 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import Config from "./components/config";
 import Calculator from "./components/calculator";
+import Dashboard from "./components/dashboard";
+
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/config" element={<Config />} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );

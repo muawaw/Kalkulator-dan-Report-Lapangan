@@ -3,11 +3,11 @@ package core
 import (
 	"errors"
 	"fmt"
-	"log"
 	"log/slog"
 	"net/http"
 	"strconv"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 	repo "github.com/muawaw/Kalkulator-dan-Report-Lapangan/backend/internal/adapters/postgres/sqlc"
@@ -22,24 +22,6 @@ func NewHandler(service Service) *Handler {
 	return &Handler{
 		service: service,
 	}
-}
-
-// Calculator Handler for handling request related to calculator
-func (h *Handler) Calculator(w http.ResponseWriter, r *http.Request) {
-	result, err := h.service.Calculator(r.Context())
-	if err != nil {
-		log.Printf("Error occured while trying the Calculator Services: %s", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	response := struct {
-		ReportKeuangan []repo.ReportPKKReportKeuangan `json:"report_keuangan"`
-	}{
-		ReportKeuangan: result,
-	}
-
-	_ = json.WriteJSON(w, http.StatusOK, response)
 }
 
 // GetLapangan Handler for fetching all lapangan records
@@ -356,6 +338,115 @@ func (h *Handler) DeleteReclub(w http.ResponseWriter, r *http.Request) {
 
 	if err := h.service.DeleteReclub(r.Context(), decodedID); err != nil {
 		slog.Error("Failed to delete reclub record", "error", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
+
+// CreateReportKeuangan Handler (Calculator Save POST)
+func (h *Handler) CreateReportKeuangan(w http.ResponseWriter, r *http.Request) {
+	var req CreateReportKeuanganRequest
+	if err := json.ReadJSON(r, &req); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	res, err := h.service.CreateReportKeuangan(r.Context(), req)
+	if err != nil {
+		slog.Error("Failed to create report keuangan", "error", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_ = json.WriteJSON(w, http.StatusCreated, res)
+}
+
+// GetReportKeuangan Handler
+func (h *Handler) GetReportKeuangan(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	reports, err := h.service.GetReportKeuangan(ctx)
+	if err != nil {
+		slog.Error("Failed to fetch report keuangan list", "error", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_ = json.WriteJSON(w, http.StatusOK, reports)
+}
+
+// GetReportKeuanganByID Handler
+func (h *Handler) GetReportKeuanganByID(w http.ResponseWriter, r *http.Request) {
+	idStr := chi.URLParam(r, "id")
+	if idStr == "" {
+		http.Error(w, "ID parameter is required", http.StatusBadRequest)
+		return
+	}
+
+	decodedID, err := DecodeID(idStr)
+	if err != nil {
+		http.Error(w, "Invalid ID format", http.StatusBadRequest)
+		return
+	}
+
+	report, err := h.service.GetReportKeuanganByID(r.Context(), decodedID)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			http.Error(w, "Record not found", http.StatusNotFound)
+			return
+		}
+		slog.Error("Failed to fetch report keuangan by ID", "error", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_ = json.WriteJSON(w, http.StatusOK, report)
+}
+
+// UpdateReportKeuangan Handler
+func (h *Handler) UpdateReportKeuangan(w http.ResponseWriter, r *http.Request) {
+	idStr := chi.URLParam(r, "id")
+	if idStr == "" {
+		http.Error(w, "ID parameter is required", http.StatusBadRequest)
+		return
+	}
+
+	var req UpdateReportKeuanganRequest
+	if err := json.ReadJSON(r, &req); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	req.ID = idStr // Bind URL path ID to request DTO
+
+	res, err := h.service.UpdateReportKeuangan(r.Context(), req)
+	if err != nil {
+		slog.Error("Failed to update report keuangan", "error", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_ = json.WriteJSON(w, http.StatusOK, res)
+}
+
+// DeleteReportKeuangan Handler
+func (h *Handler) DeleteReportKeuangan(w http.ResponseWriter, r *http.Request) {
+	// Extract ID from Chi URL path instead of query params
+	idStr := chi.URLParam(r, "id")
+	if idStr == "" {
+		http.Error(w, "ID parameter is required", http.StatusBadRequest)
+		return
+	}
+
+	decodedID, err := DecodeID(idStr)
+	if err != nil {
+		http.Error(w, "Invalid ID format", http.StatusBadRequest)
+		return
+	}
+
+	if err := h.service.DeleteReportKeuangan(r.Context(), decodedID); err != nil {
+		slog.Error("Failed to delete report keuangan record", "error", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
