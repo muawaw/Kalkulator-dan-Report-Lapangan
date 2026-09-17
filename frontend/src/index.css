@@ -1,18 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
 @import "tailwindcss";
 
 @layer base {
-  html, body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #FBF8EE;
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body {
+    font-family:
+      "Plus Jakarta Sans",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    background-color: #fbf8ee;
     color: #0f172a;
+  }
+
+  /* Default smooth transitions for interactive elements */
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply transition-all duration-200 ease-out;
   }
 }
 
 @theme {
-  --color-pkk-blue: #0055A4;
-  --color-pkk-lime: #8BC34A;
-  --color-pkk-yellow: #FFE53B;
-  --color-pkk-green: #22C55E;
-  --color-pkk-cream: #FBF8EE;
+  --color-pkk-blue: #0055a4;
+  --color-pkk-lime: #8bc34a;
+  --color-pkk-yellow: #ffe53b;
+  --color-pkk-green: #22c55e;
+  --color-pkk-cream: #fbf8ee;
+}
+
+/* Custom Animation Utility Classes */
+@layer utilities {
+  .animate-curtain-slide-up {
+    animation: curtainSlideUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  }
+
+  .animate-cloth-wave {
+    animation: clothWave 8s ease-in-out infinite;
+  }
+
+  .animate-logo-zoom {
+    animation: logoZoom 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-pop-up {
+    animation: popUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Keyframe Definitions */
+@keyframes curtainSlideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes clothWave {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: scale(1.15) rotate(4deg) translateY(-12px);
+  }
+}
+
+@keyframes logoZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

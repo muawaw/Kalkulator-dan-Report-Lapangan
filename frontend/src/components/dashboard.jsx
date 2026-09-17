@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiGetReportKeuangan } from "../services/api";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const formatCurrency = (val) =>
   new Intl.NumberFormat("id-ID", {
@@ -110,8 +111,8 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center p-4 text-lg font-semibold text-pkk-green">
-        Loading dashboard data...
+      <div className="w-24 h-24 flex items-center justify-center animate-pop-up">
+        <DotLottieReact src="/loading.json" loop autoplay />
       </div>
     );
   }
@@ -145,7 +146,7 @@ export default function Dashboard() {
           className="w-24 h-24 sm:w-32 sm:h-32"
         />
         <h1 className="text-2xl sm:text-3xl font-bold text-pkk-green">
-          Dashboard Keuangan
+          Laporan Kas
         </h1>
       </div>
 

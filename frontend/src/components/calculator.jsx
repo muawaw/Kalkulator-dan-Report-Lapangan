@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiRequest } from "../services/api"; // Adjust import path if needed
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { apiRequest, apiCreateReportKeuangan } from "../services/api";
 
 const LAPANGAN_ENDPOINT = "/config/lapangan";
 const RECLUB_ENDPOINT = "/config/reclub";
-// const REPORT_ENDPOINT = "/report-keuangan";
 
 const ALLOWED_USERS = import.meta.env.VITE_ALLOWED_USERS
   ? import.meta.env.VITE_ALLOWED_USERS.split(",")
@@ -14,10 +14,14 @@ export default function Calculator() {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
 
-  // API Data State
+  // API Data & Loading State
   const [lapanganData, setLapanganData] = useState([]);
   const [reclubData, setReclubData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const [fetchError, setFetchError] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Form Inputs
@@ -51,6 +55,7 @@ export default function Calculator() {
   useEffect(() => {
     async function fetchAllData() {
       setLoading(true);
+      setFetchError("");
       try {
         const [lapangan, reclub] = await Promise.all([
           apiRequest(LAPANGAN_ENDPOINT),
@@ -60,6 +65,7 @@ export default function Calculator() {
         setReclubData(reclub || []);
       } catch (err) {
         console.error("Error fetching config:", err);
+        setFetchError("Gagal memuat data konfigurasi: " + err.message);
       } finally {
         setLoading(false);
       }
@@ -67,6 +73,27 @@ export default function Calculator() {
 
     fetchAllData();
   }, []);
+
+  // Timer & FadeOut Effect for Loading State
+  useEffect(() => {
+    if (!loading) {
+      const startExitTimer = setTimeout(() => {
+        setIsExiting(true);
+      }, 1200);
+
+      const unmountTimer = setTimeout(() => {
+        setShowSpinner(false);
+      }, 1600);
+
+      return () => {
+        clearTimeout(startExitTimer);
+        clearTimeout(unmountTimer);
+      };
+    } else {
+      setShowSpinner(true);
+      setIsExiting(false);
+    }
+  }, [loading]);
 
   useEffect(() => {
     // If dropdowns aren't selected yet, keep calculations at 0
@@ -159,7 +186,6 @@ export default function Calculator() {
       setErrorMessage("Nama PIC wajib diisi.");
       return;
     }
-    console.log("Formatted PIC Name:", formattedPicName);
 
     const formattedAllowedUsers = ALLOWED_USERS.map((user) =>
       user.toUpperCase(),
@@ -175,31 +201,90 @@ export default function Calculator() {
       kas_in: parseFloat(kasIn) || 0,
       kas_out: hasKasOut ? parseFloat(kasOut) || 0 : 0,
       description,
+      pic: formattedPicName,
     };
 
-    console.log("Final Payload for ReportKeuangan:", payload, picName);
+    try {
+      setIsSubmitting(true);
+      setErrorMessage("");
 
-    // TODO: Add API POST request here
-    setIsModalOpen(false);
-    setPicName("");
+      await apiCreateReportKeuangan(payload);
+
+      // Reset form fields on success
+      setTanggal(today);
+      setSelectedLapanganId("");
+      setSelectedReclubId("");
+      setPlayerInternal("");
+      setPlayerExternal("");
+      setTips("");
+      setPatunganPerInternal(0);
+      setKasIn(0);
+      setHasKasOut(false);
+      setKasOut("");
+      setDescription("");
+
+      setIsModalOpen(false);
+      setPicName("");
+    } catch (err) {
+      console.error("Error creating report:", err);
+      setErrorMessage(err.message || "Gagal menyimpan laporan.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (showSpinner) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div
+          className={`w-24 h-24 flex items-center justify-center animate__animated ${
+            isExiting ? "animate__fadeOut" : "animate__fadeIn"
+          }`}
+          style={{ animationDuration: "200ms" }}
+        >
+          <DotLottieReact src="/loading.json" loop autoplay />
+        </div>
+      </div>
+    );
+  }
+
+  if (fetchError) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-4">
+        <div className="text-lg font-semibold text-red-600 mb-4">
+          {fetchError}
+        </div>
+        <button
+          onClick={() => navigate("/")}
+          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime transition-all text-sm shadow cursor-pointer"
+        >
+          ← Kembali ke Beranda
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-start p-4 pt-4">
-      {/* Container Card */}
       {/* Back Button */}
       <div className="w-full max-w-xl mb-4 flex justify-start">
         <button
           type="button"
           onClick={() => navigate("/")}
-          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer"
+          style={{ animationDelay: "0.1s" }}
+          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer animate__animated animate__fadeInUp"
         >
           ← Kembali
         </button>
       </div>
+
+      {/* Container Card */}
       <div className="w-full max-w-xl bg-white border rounded-xl shadow-md p-6 relative">
         {/* HEADER */}
-        <div className="bg-pkk-green p-6 -m-6 mb-6 rounded-t-xl border-b border-pkk-lime flex items-center justify-between">
+        <div
+          style={{ animationDelay: "0.2s" }}
+          className="bg-pkk-green p-6 -m-6 mb-6 rounded-t-xl border-b border-pkk-lime flex items-center justify-between animate__animated animate__fadeInUp"
+        >
           <div>
             <h2 className="text-2xl font-bold text-pkk-cream">
               Input Report Keuangan
@@ -210,114 +295,194 @@ export default function Calculator() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="text-center py-10 text-gray-500 font-medium">
-            Memuat data konfigurasi...
+        <form onSubmit={handlePreSubmit} className="space-y-5">
+          {/* Tanggal Field */}
+          <div
+            style={{ animationDelay: "0.3s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Tanggal <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              required
+              value={tanggal}
+              onChange={(e) => setTanggal(e.target.value)}
+              className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+            />
           </div>
-        ) : (
-          <form onSubmit={handlePreSubmit} className="space-y-5">
-            {/* Tanggal Field */}
+
+          {/* Lapangan Selector */}
+          <div
+            style={{ animationDelay: "0.4s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Pilih Lapangan <span className="text-red-500">*</span>
+            </label>
+            <select
+              required
+              value={selectedLapanganId}
+              onChange={(e) => setSelectedLapanganId(e.target.value)}
+              className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+            >
+              <option value="">Pilih Lapangan</option>
+              {lapanganData.map((item) => (
+                <option
+                  key={item.id || item._id || item.ID}
+                  value={item.id || item._id || item.ID}
+                >
+                  {item.NamaLapangan ||
+                    item.nama_lapangan ||
+                    item.namaLapangan ||
+                    item.nama ||
+                    item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Reclub Selector */}
+          <div
+            style={{ animationDelay: "0.5s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Pilih Sesi Reclub <span className="text-red-500">*</span>
+            </label>
+            <select
+              required
+              value={selectedReclubId}
+              onChange={(e) => setSelectedReclubId(e.target.value)}
+              className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+            >
+              <option value="">Pilih Sesi Reclub</option>
+              {reclubData.map((item) => (
+                <option
+                  key={item.id || item._id || item.ID}
+                  value={item.id || item._id || item.ID}
+                >
+                  {item.JadwalAtauHari ||
+                    item.jadwal_atau_hari ||
+                    item.jadwalAtauHari ||
+                    item.nama ||
+                    item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Players Grid */}
+          <div
+            style={{ animationDelay: "0.6s" }}
+            className="grid grid-cols-2 gap-4 animate__animated animate__fadeInUp"
+          >
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Tanggal <span className="text-red-500">*</span>
+                Pemain Internal <span className="text-red-500">*</span>
               </label>
               <input
-                type="date"
-                required
-                value={tanggal}
-                onChange={(e) => setTanggal(e.target.value)}
+                type="number"
+                min="0"
+                placeholder="0"
+                value={playerInternal}
+                onChange={(e) => setPlayerInternal(e.target.value)}
                 className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
               />
             </div>
-
-            {/* Lapangan Selector */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Pilih Lapangan <span className="text-red-500">*</span>
+                Pemain External <span className="text-red-500">*</span>
               </label>
-              <select
-                required
-                value={selectedLapanganId}
-                onChange={(e) => setSelectedLapanganId(e.target.value)}
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={playerExternal}
+                onChange={(e) => setPlayerExternal(e.target.value)}
                 className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-              >
-                <option value="">Pilih Lapangan</option>
-                {lapanganData.map((item) => (
-                  <option
-                    key={item.id || item._id || item.ID}
-                    value={item.id || item._id || item.ID}
-                  >
-                    {item.NamaLapangan ||
-                      item.nama_lapangan ||
-                      item.namaLapangan ||
-                      item.nama ||
-                      item.name}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
+          </div>
 
-            {/* Reclub Selector */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Pilih Sesi Reclub <span className="text-red-500">*</span>
-              </label>
-              <select
-                required
-                value={selectedReclubId}
-                onChange={(e) => setSelectedReclubId(e.target.value)}
-                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-              >
-                <option value="">Pilih Sesi Reclub</option>
-                {reclubData.map((item) => (
-                  <option
-                    key={item.id || item._id || item.ID}
-                    value={item.id || item._id || item.ID}
-                  >
-                    {item.JadwalAtauHari ||
-                      item.jadwal_atau_hari ||
-                      item.jadwalAtauHari ||
-                      item.nama ||
-                      item.name}
-                  </option>
-                ))}
-              </select>
+          {/* Tips Field */}
+          <div
+            style={{ animationDelay: "0.7s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Tips (Opsional)
+            </label>
+            <div className="relative">
+              <span className="absolute left-3 top-2.5 text-gray-500 font-medium">
+                Rp
+              </span>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={tips}
+                onChange={(e) => setTips(e.target.value)}
+                className="w-full border p-2.5 pl-10 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              />
             </div>
+          </div>
 
-            {/* Players Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  Pemain Internal <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="0"
-                  value={playerInternal}
-                  onChange={(e) => setPlayerInternal(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                />
+          {/* Calculator Output */}
+          <div
+            style={{ animationDelay: "0.8s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <div className="p-4 bg-pkk-green border border-pkk-lime rounded-lg space-y-3">
+              {/* Patungan Per Internal Player */}
+              <div className="flex justify-between items-center border-b border-pkk-lime pb-2">
+                <span className="text-sm font-semibold text-pkk-cream">
+                  Patungan / Member Internal:
+                </span>
+                <span className="text-lg font-bold text-pkk-cream">
+                  Rp {Math.ceil(patunganPerInternal).toLocaleString("id-ID")}
+                </span>
               </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  Pemain External <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="0"
-                  value={playerExternal}
-                  onChange={(e) => setPlayerExternal(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                />
+
+              {/* Final Calculated Kas In */}
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold text-pkk-cream uppercase tracking-wider">
+                  Total Kas In:
+                </span>
+                <span className="text-2xl font-extrabold text-pkk-yellow">
+                  Rp {Math.ceil(kasIn).toLocaleString("id-ID")}
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* Tips Field */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Tips (Opsional)
+          {/* Kas Out Checkbox Toggle */}
+          <div
+            style={{ animationDelay: "0.9s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="flex items-center gap-3 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={hasKasOut}
+                onChange={(e) => {
+                  setHasKasOut(e.target.checked);
+                  if (!e.target.checked) setKasOut(""); // Clear value if unchecked
+                }}
+                className="w-4 h-4 accent-pkk-green rounded cursor-pointer transition-all"
+              />
+              <span className="text-sm font-semibold text-gray-700">
+                Ada Pengeluaran?
+              </span>
+            </label>
+          </div>
+
+          {/* Conditional Kas Out Field */}
+          {hasKasOut && (
+            <div className="pt-2 px-2 pb-2 mt-2 bg-pkk-green border border-pkk-lime rounded-lg transition-all animate__animated animate__fadeIn">
+              <label className="block pb-1 text-sm font-semibold text-pkk-cream mb-1">
+                Pengeluaran (Rp) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-2.5 text-gray-500 font-medium">
@@ -326,129 +491,69 @@ export default function Calculator() {
                 <input
                   type="number"
                   min="0"
+                  required={hasKasOut}
                   placeholder="0"
-                  value={tips}
-                  onChange={(e) => setTips(e.target.value)}
-                  className="w-full border p-2.5 pl-10 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+                  value={kasOut}
+                  onChange={(e) => setKasOut(e.target.value)}
+                  className="w-full border border-pkk-lime p-2.5 pl-10 rounded-lg bg-white text-gray-500 focus:ring-2 focus:ring-pkk-lime outline-none"
                 />
               </div>
             </div>
+          )}
 
-            {/* Calculator Output */}
-            <div>
-              <div className="p-4 bg-pkk-green border border-pkk-lime rounded-lg space-y-3">
-                {/* Patungan Per Internal Player */}
-                <div className="flex justify-between items-center border-b border-pkk-lime pb-2">
-                  <span className="text-sm font-semibold text-pkk-cream">
-                    Patungan / Member Internal:
-                  </span>
-                  <span className="text-lg font-bold text-pkk-cream">
-                    Rp {Math.ceil(patunganPerInternal).toLocaleString("id-ID")}
-                  </span>
-                </div>
+          {/* Description Field */}
+          <div
+            style={{ animationDelay: "1.0s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Keterangan
+            </label>
+            <textarea
+              rows="3"
+              placeholder="Contoh: Pemasukan reclub Sabtu 19.00 - 23.00 & Pengeluaran untuk pembelian bola"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+            />
+          </div>
 
-                {/* Final Calculated Kas In */}
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-pkk-cream uppercase tracking-wider">
-                    Total Kas In:
-                  </span>
-                  <span className="text-2xl font-extrabold text-pkk-yellow">
-                    Rp {Math.ceil(kasIn).toLocaleString("id-ID")}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Kas Out Checkbox Toggle */}
-            <div>
-              <label className="flex items-center gap-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={hasKasOut}
-                  onChange={(e) => {
-                    setHasKasOut(e.target.checked);
-                    if (!e.target.checked) setKasOut(""); // Clear value if unchecked
-                  }}
-                  className="w-4 h-4 accent-pkk-green rounded cursor-pointer transition-all"
-                />
-                <span className="text-sm font-semibold text-gray-700">
-                  Ada Pengeluaran?
-                </span>
-              </label>
-            </div>
-
-            {/* Conditional Kas Out Field */}
-            {hasKasOut && (
-              <div className="pt-2 px-2 pb-2 mt-2 bg-pkk-green border border-pkk-lime rounded-lg transition-all">
-                <label className="block pb-1 text-sm font-semibold text-pkk-cream mb-1">
-                  Pengeluaran (Rp) <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-gray-500 font-medium">
-                    Rp
-                  </span>
-                  <input
-                    type="number"
-                    min="0"
-                    required={hasKasOut}
-                    placeholder="0"
-                    value={kasOut}
-                    onChange={(e) => setKasOut(e.target.value)}
-                    className="w-full border border-pkk-lime p-2.5 pl-10 rounded-lg bg-white text-gray-500 focus:ring-2 focus:ring-pkk-lime outline-none"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Description Field */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Keterangan
-              </label>
-              <textarea
-                rows="3"
-                placeholder="Contoh: Pemasukan reclub Sabtu 19.00 - 23.00 & Pengeluaran untuk pembelian bola"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-              />
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex justify-end gap-3 pt-4 border-t">
-              <button
-                type="button"
-                onClick={() => {
-                  setTanggal(today);
-                  setSelectedLapanganId("");
-                  setSelectedReclubId("");
-                  setPlayerInternal(0);
-                  setPlayerExternal(0);
-                  setTips("");
-                  // setKasIn(0);
-                  setPatunganPerInternal(0);
-                  setHasKasOut(false);
-                  setKasOut("");
-                  setDescription("");
-                }}
-                className="px-5 py-2.5 border rounded-lg bg-pkk-blue text-pkk-cream hover:bg-pkk-cream hover:text-pkk-blue hover:border-pkk-blue hover:scale-102 duration-300 transition-all font-medium"
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                className="px-6 py-2.5 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all duration-300 shadow-md cursor-pointer"
-              >
-                Simpan Laporan
-              </button>
-            </div>
-          </form>
-        )}
+          {/* Action Buttons */}
+          <div
+            style={{ animationDelay: "1.1s" }}
+            className="flex justify-end gap-3 pt-4 border-t animate__animated animate__fadeInUp"
+          >
+            <button
+              type="button"
+              onClick={() => {
+                setTanggal(today);
+                setSelectedLapanganId("");
+                setSelectedReclubId("");
+                setPlayerInternal("");
+                setPlayerExternal("");
+                setTips("");
+                setPatunganPerInternal(0);
+                setHasKasOut(false);
+                setKasOut("");
+                setDescription("");
+              }}
+              className="px-5 py-2.5 border rounded-lg bg-pkk-blue text-pkk-cream hover:bg-pkk-cream hover:text-pkk-blue hover:border-pkk-blue hover:scale-102 duration-300 transition-all font-medium cursor-pointer"
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2.5 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all duration-300 shadow-md cursor-pointer"
+            >
+              Simpan Laporan
+            </button>
+          </div>
+        </form>
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-pkk-cream p-6 rounded-xl shadow-lg w-full max-w-md">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate__animated animate__fadeIn">
+          <div className="bg-pkk-cream p-6 rounded-xl shadow-lg w-full max-w-md animate__animated animate__fadeInUp transition-all duration-50">
             <h3 className="text-xl font-bold text-gray-800 mb-2">
               Konfirmasi Simpan Laporan
             </h3>
@@ -488,9 +593,10 @@ export default function Calculator() {
               <button
                 type="button"
                 onClick={handleFinalSave}
+                disabled={isSubmitting}
                 className="px-5 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all duration-300 shadow-md cursor-pointer"
               >
-                Simpan
+                {isSubmitting ? "Menyimpan..." : "Simpan"}
               </button>
             </div>
           </div>

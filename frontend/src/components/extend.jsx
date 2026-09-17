@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { apiRequest } from "../services/api";
 
 const LAPANGAN_ENDPOINT = "/config/lapangan";
@@ -11,7 +12,10 @@ export default function Extend() {
   // API Data State
   const [lapanganData, setLapanganData] = useState([]);
   const [reclubData, setReclubData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Custom Mode Toggles
   const [isCustomLapangan, setIsCustomLapangan] = useState(false);
@@ -40,6 +44,7 @@ export default function Extend() {
   useEffect(() => {
     async function fetchAllData() {
       setLoading(true);
+      setErrorMessage("");
       try {
         const [lapangan, reclub] = await Promise.all([
           apiRequest(LAPANGAN_ENDPOINT),
@@ -49,6 +54,7 @@ export default function Extend() {
         setReclubData(reclub || []);
       } catch (err) {
         console.error("Error fetching config:", err);
+        setErrorMessage("Gagal memuat data konfigurasi: " + err.message);
       } finally {
         setLoading(false);
       }
@@ -56,6 +62,27 @@ export default function Extend() {
 
     fetchAllData();
   }, []);
+
+  // Timer & FadeOut Effect for Loading State
+  useEffect(() => {
+    if (!loading) {
+      const startExitTimer = setTimeout(() => {
+        setIsExiting(true);
+      }, 1200);
+
+      const unmountTimer = setTimeout(() => {
+        setShowSpinner(false);
+      }, 1600);
+
+      return () => {
+        clearTimeout(startExitTimer);
+        clearTimeout(unmountTimer);
+      };
+    } else {
+      setShowSpinner(true);
+      setIsExiting(false);
+    }
+  }, [loading]);
 
   useEffect(() => {
     // Determine Lapangan Prices
@@ -172,6 +199,37 @@ export default function Extend() {
     setTips("");
   };
 
+  if (showSpinner) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div
+          className={`w-24 h-24 flex items-center justify-center animate__animated ${
+            isExiting ? "animate__fadeOut" : "animate__fadeIn"
+          }`}
+          style={{ animationDuration: "200ms" }}
+        >
+          <DotLottieReact src="/loading.json" loop autoplay />
+        </div>
+      </div>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-4">
+        <div className="text-lg font-semibold text-red-600 mb-4">
+          {errorMessage}
+        </div>
+        <button
+          onClick={() => navigate("/")}
+          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime transition-all text-sm shadow cursor-pointer"
+        >
+          ← Kembali ke Beranda
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-start p-4 pt-4">
       {/* Back Button */}
@@ -179,7 +237,8 @@ export default function Extend() {
         <button
           type="button"
           onClick={() => navigate("/")}
-          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer"
+          style={{ animationDelay: "0.1s" }}
+          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer animate__animated animate__fadeInUp"
         >
           ← Kembali
         </button>
@@ -188,10 +247,13 @@ export default function Extend() {
       {/* Main Container Card */}
       <div className="w-full max-w-xl bg-white border rounded-xl shadow-md p-6 relative">
         {/* HEADER */}
-        <div className="bg-pkk-green p-6 -m-6 mb-6 rounded-t-xl border-b border-pkk-lime flex items-center justify-between">
+        <div
+          style={{ animationDelay: "0.2s" }}
+          className="bg-pkk-green p-6 -m-6 mb-6 rounded-t-xl border-b border-pkk-lime flex items-center justify-between animate__animated animate__fadeInUp"
+        >
           <div>
             <h2 className="text-2xl font-bold text-pkk-cream">
-              Kalkulator Extension Payment
+              Perhitungan Pembagian Lapangan
             </h2>
             <p className="text-sm text-pkk-cream/80 mt-1">
               Hitung pembagian patungan/shared payment per sesi tanpa simpan
@@ -200,260 +262,272 @@ export default function Extend() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="text-center py-10 text-gray-500 font-medium">
-            Memuat data konfigurasi...
-          </div>
-        ) : (
-          <div className="space-y-5">
-            {/* SECTION LAPANGAN */}
-            <div className="p-4 border rounded-xl bg-gray-50/50 space-y-3">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-semibold text-gray-700">
-                  Pilihan Lapangan
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-pkk-green font-semibold">
-                  <input
-                    type="checkbox"
-                    checked={isCustomLapangan}
-                    onChange={(e) => {
-                      setIsCustomLapangan(e.target.checked);
-                      setSelectedLapanganId("");
-                    }}
-                    className="w-4 h-4 accent-pkk-green rounded cursor-pointer"
-                  />
-                  Custom Lapangan
-                </label>
-              </div>
-
-              {!isCustomLapangan ? (
-                <select
-                  value={selectedLapanganId}
-                  onChange={(e) => setSelectedLapanganId(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                >
-                  <option value="">Pilih Lapangan</option>
-                  {lapanganData.map((item) => (
-                    <option
-                      key={item.id || item._id || item.ID}
-                      value={item.id || item._id || item.ID}
-                    >
-                      {item.NamaLapangan ||
-                        item.nama_lapangan ||
-                        item.namaLapangan ||
-                        item.nama ||
-                        item.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">
-                      Harga Lapangan (/Jam)
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
-                        Rp
-                      </span>
-                      <input
-                        type="number"
-                        min="0"
-                        placeholder="0"
-                        value={customHargaLapangan}
-                        onChange={(e) => setCustomHargaLapangan(e.target.value)}
-                        className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">
-                      Harga Ballboy (/Jam)
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
-                        Rp
-                      </span>
-                      <input
-                        type="number"
-                        min="0"
-                        placeholder="0 (jika tidak ada)"
-                        value={customHargaBallboy}
-                        onChange={(e) => setCustomHargaBallboy(e.target.value)}
-                        className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
+        <div className="space-y-5">
+          {/* SECTION LAPANGAN */}
+          <div
+            style={{ animationDelay: "0.3s" }}
+            className="p-4 border rounded-xl bg-gray-50/50 space-y-3 animate__animated animate__fadeInUp"
+          >
+            <div className="flex justify-between items-center">
+              <label className="text-sm font-semibold text-gray-700">
+                Pilihan Lapangan
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-pkk-green font-semibold">
+                <input
+                  type="checkbox"
+                  checked={isCustomLapangan}
+                  onChange={(e) => {
+                    setIsCustomLapangan(e.target.checked);
+                    setSelectedLapanganId("");
+                  }}
+                  className="w-4 h-4 accent-pkk-green rounded cursor-pointer"
+                />
+                Custom Lapangan
+              </label>
             </div>
 
-            {/* SECTION SESI RECLUB */}
-            <div className="p-4 border rounded-xl bg-gray-50/50 space-y-3">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-semibold text-gray-700">
-                  Pilihan Sesi / Reclub
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-pkk-green font-semibold">
-                  <input
-                    type="checkbox"
-                    checked={isCustomReclub}
-                    onChange={(e) => {
-                      setIsCustomReclub(e.target.checked);
-                      setSelectedReclubId("");
-                    }}
-                    className="w-4 h-4 accent-pkk-green rounded cursor-pointer"
-                  />
-                  Custom Sesi
-                </label>
-              </div>
-
-              {!isCustomReclub ? (
-                <select
-                  value={selectedReclubId}
-                  onChange={(e) => setSelectedReclubId(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                >
-                  <option value="">Pilih Sesi Reclub</option>
-                  {reclubData.map((item) => (
-                    <option
-                      key={item.id || item._id || item.ID}
-                      value={item.id || item._id || item.ID}
-                    >
-                      {item.JadwalAtauHari ||
-                        item.jadwal_atau_hari ||
-                        item.jadwalAtauHari ||
-                        item.nama ||
-                        item.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">
-                      Total Durasi (Jam)
-                    </label>
+            {!isCustomLapangan ? (
+              <select
+                value={selectedLapanganId}
+                onChange={(e) => setSelectedLapanganId(e.target.value)}
+                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              >
+                <option value="">Pilih Lapangan</option>
+                {lapanganData.map((item) => (
+                  <option
+                    key={item.id || item._id || item.ID}
+                    value={item.id || item._id || item.ID}
+                  >
+                    {item.NamaLapangan ||
+                      item.nama_lapangan ||
+                      item.namaLapangan ||
+                      item.nama ||
+                      item.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
+                    Harga Lapangan (/Jam)
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
+                      Rp
+                    </span>
                     <input
                       type="number"
-                      step="0.5"
                       min="0"
-                      placeholder="Contoh: 2"
-                      value={customTotalJam}
-                      onChange={(e) => setCustomTotalJam(e.target.value)}
-                      className="w-full border p-2 text-sm rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+                      placeholder="0"
+                      value={customHargaLapangan}
+                      onChange={(e) => setCustomHargaLapangan(e.target.value)}
+                      className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-600 mb-1">
-                      Biaya Daftar / Player Ext
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
-                        Rp
-                      </span>
-                      <input
-                        type="number"
-                        min="0"
-                        placeholder="0"
-                        value={customBiayaDaftar}
-                        onChange={(e) => setCustomBiayaDaftar(e.target.value)}
-                        className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                      />
-                    </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
+                    Harga Ballboy (/Jam)
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
+                      Rp
+                    </span>
+                    <input
+                      type="number"
+                      min="0"
+                      placeholder="0 (jika tidak ada)"
+                      value={customHargaBallboy}
+                      onChange={(e) => setCustomHargaBallboy(e.target.value)}
+                      className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+                    />
                   </div>
                 </div>
-              )}
+              </div>
+            )}
+          </div>
+
+          {/* SECTION SESI RECLUB */}
+          <div
+            style={{ animationDelay: "0.4s" }}
+            className="p-4 border rounded-xl bg-gray-50/50 space-y-3 animate__animated animate__fadeInUp"
+          >
+            <div className="flex justify-between items-center">
+              <label className="text-sm font-semibold text-gray-700">
+                Pilihan Sesi / Reclub
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-pkk-green font-semibold">
+                <input
+                  type="checkbox"
+                  checked={isCustomReclub}
+                  onChange={(e) => {
+                    setIsCustomReclub(e.target.checked);
+                    setSelectedReclubId("");
+                  }}
+                  className="w-4 h-4 accent-pkk-green rounded cursor-pointer"
+                />
+                Custom Sesi
+              </label>
             </div>
 
-            {/* PLAYERS GRID */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  Pemain Internal
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="0"
-                  value={playerInternal}
-                  onChange={(e) => setPlayerInternal(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                />
+            {!isCustomReclub ? (
+              <select
+                value={selectedReclubId}
+                onChange={(e) => setSelectedReclubId(e.target.value)}
+                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              >
+                <option value="">Pilih Sesi Reclub</option>
+                {reclubData.map((item) => (
+                  <option
+                    key={item.id || item._id || item.ID}
+                    value={item.id || item._id || item.ID}
+                  >
+                    {item.JadwalAtauHari ||
+                      item.jadwal_atau_hari ||
+                      item.jadwalAtauHari ||
+                      item.nama ||
+                      item.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="grid grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
+                    Total Durasi (Jam)
+                  </label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    min="0"
+                    placeholder="Contoh: 2"
+                    value={customTotalJam}
+                    onChange={(e) => setCustomTotalJam(e.target.value)}
+                    className="w-full border p-2 text-sm rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">
+                    Biaya Daftar / Player Ext
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-2 text-gray-500 text-xs font-medium">
+                      Rp
+                    </span>
+                    <input
+                      type="number"
+                      min="0"
+                      placeholder="0"
+                      value={customBiayaDaftar}
+                      onChange={(e) => setCustomBiayaDaftar(e.target.value)}
+                      className="w-full border p-2 text-sm pl-8 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+                    />
+                  </div>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                  Pemain External
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="0"
-                  value={playerExternal}
-                  onChange={(e) => setPlayerExternal(e.target.value)}
-                  className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                />
-              </div>
-            </div>
+            )}
+          </div>
 
-            {/* TIPS FIELD */}
+          {/* PLAYERS GRID */}
+          <div
+            style={{ animationDelay: "0.5s" }}
+            className="grid grid-cols-2 gap-4 animate__animated animate__fadeInUp"
+          >
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Tips (Opsional)
+                Pemain Internal
               </label>
-              <div className="relative">
-                <span className="absolute left-3 top-2.5 text-gray-500 font-medium">
-                  Rp
-                </span>
-                <input
-                  type="number"
-                  min="0"
-                  placeholder="0"
-                  value={tips}
-                  onChange={(e) => setTips(e.target.value)}
-                  className="w-full border p-2.5 pl-10 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
-                />
-              </div>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={playerInternal}
+                onChange={(e) => setPlayerInternal(e.target.value)}
+                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              />
             </div>
-
-            {/* CALCULATOR DISPLAY SUMMARY */}
-            <div className="p-4 bg-pkk-green border border-pkk-lime rounded-lg space-y-3">
-              <div className="flex justify-between items-center text-xs text-pkk-cream/90 border-b border-pkk-lime/40 pb-2">
-                <span>Total Biaya (Sewa + Ballboy + Tips):</span>
-                <span className="font-semibold">
-                  Rp {Math.ceil(totalExpenses).toLocaleString("id-ID")}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center text-xs text-pkk-cream/90 border-b border-pkk-lime/40 pb-2">
-                <span>Pemasukan External:</span>
-                <span className="font-semibold">
-                  Rp {Math.ceil(totalExtRevenue).toLocaleString("id-ID")}
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center pt-1">
-                <span className="text-sm font-bold text-pkk-cream">
-                  Patungan / Member Internal:
-                </span>
-                <span className="text-2xl font-extrabold text-pkk-yellow">
-                  Rp {Math.ceil(patunganPerInternal).toLocaleString("id-ID")}
-                </span>
-              </div>
-            </div>
-
-            {/* RESET BUTTON */}
-            <div className="flex justify-end pt-2">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="w-full sm:w-auto px-6 py-2.5 border rounded-lg bg-pkk-blue text-pkk-cream hover:bg-pkk-cream hover:text-pkk-blue hover:border-pkk-blue transition-all duration-300 font-medium"
-              >
-                Reset Kalkulator
-              </button>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Pemain External
+              </label>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={playerExternal}
+                onChange={(e) => setPlayerExternal(e.target.value)}
+                className="w-full border p-2.5 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              />
             </div>
           </div>
-        )}
+
+          {/* TIPS FIELD */}
+          <div
+            style={{ animationDelay: "0.6s" }}
+            className="animate__animated animate__fadeInUp"
+          >
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Tips (Opsional)
+            </label>
+            <div className="relative">
+              <span className="absolute left-3 top-2.5 text-gray-500 font-medium">
+                Rp
+              </span>
+              <input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={tips}
+                onChange={(e) => setTips(e.target.value)}
+                className="w-full border p-2.5 pl-10 rounded-lg bg-white focus:ring-2 focus:ring-pkk-green outline-none"
+              />
+            </div>
+          </div>
+
+          {/* CALCULATOR DISPLAY SUMMARY */}
+          <div
+            style={{ animationDelay: "0.7s" }}
+            className="p-4 bg-pkk-green border border-pkk-lime rounded-lg space-y-3 animate__animated animate__fadeInUp"
+          >
+            <div className="flex justify-between items-center text-xs text-pkk-cream/90 border-b border-pkk-lime/40 pb-2">
+              <span>Total Biaya (Sewa + Ballboy + Tips):</span>
+              <span className="font-semibold">
+                Rp {Math.ceil(totalExpenses).toLocaleString("id-ID")}
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center text-xs text-pkk-cream/90 border-b border-pkk-lime/40 pb-2">
+              <span>Pemasukan External:</span>
+              <span className="font-semibold">
+                Rp {Math.ceil(totalExtRevenue).toLocaleString("id-ID")}
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center pt-1">
+              <span className="text-sm font-bold text-pkk-cream">
+                Patungan / Member Internal:
+              </span>
+              <span className="text-2xl font-extrabold text-pkk-yellow">
+                Rp {Math.ceil(patunganPerInternal).toLocaleString("id-ID")}
+              </span>
+            </div>
+          </div>
+
+          {/* RESET BUTTON */}
+          <div
+            style={{ animationDelay: "0.8s" }}
+            className="flex justify-end pt-2 animate__animated animate__fadeInUp"
+          >
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full sm:w-auto px-6 py-2.5 border rounded-lg bg-pkk-blue text-pkk-cream hover:bg-pkk-cream hover:text-pkk-blue hover:border-pkk-blue transition-all duration-300 font-medium cursor-pointer"
+            >
+              Reset Kalkulator
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
