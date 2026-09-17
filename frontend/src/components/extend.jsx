@@ -224,7 +224,7 @@ export default function Extend() {
           onClick={() => navigate("/")}
           className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime transition-all text-sm shadow cursor-pointer"
         >
-          ← Kembali ke Beranda
+          ← Kembali
         </button>
       </div>
     );

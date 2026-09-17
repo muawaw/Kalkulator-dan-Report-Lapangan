@@ -48,14 +48,14 @@ export default function Home() {
           className="w-full sm:w-64 py-4 px-6 bg-pkk-green text-pkk-cream text-center text-lg font-semibold rounded-xl hover:bg-pkk-lime transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg active:scale-95 cursor-pointer shadow-md animate__animated animate__fadeInUp"
           style={{ animationDelay: "0.9s" }}
         >
-          Hitung Pendapatan
+          Hitung Kas
         </Link>
         <Link
           to="/extend"
           className="w-full sm:w-64 py-4 px-6 bg-pkk-green text-pkk-cream text-center text-lg font-semibold rounded-xl hover:bg-pkk-lime transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg active:scale-95 cursor-pointer shadow-md animate__animated animate__fadeInUp"
           style={{ animationDelay: "1.1s" }}
         >
-          Hitung Pembagian Lapangan
+          Hitung Biaya
         </Link>
       </div>
     </div>

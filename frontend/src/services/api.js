@@ -99,6 +99,7 @@ export async function apiGetReportKeuanganByID(id) {
 }
 
 export async function apiCreateReportKeuangan(payload) {
+  console.log('[API.JS] Creating Report Keuangan with payload:', payload);
   return apiRequest(REPORT_KEUANGAN_ENDPOINT, {
     method: "POST",
     body: JSON.stringify(payload),

@@ -24,3 +24,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Build output
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Logs & Caches
+*.log
+.vite/
+.cache/

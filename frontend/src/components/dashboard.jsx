@@ -15,7 +15,6 @@ export default function Dashboard() {
 
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   // Drill-down filter state: 'ALL' | 'INCOME' | 'EXPENSE'
   const [activeFilter, setActiveFilter] = useState("ALL");
@@ -43,7 +42,7 @@ export default function Dashboard() {
       const data = await apiGetReportKeuangan();
       setReports(data || []);
     } catch (err) {
-      setError(err.message || "Failed to fetch financial report");
+      setErrorMessage(err.message || "Failed to fetch financial report");
     } finally {
       setLoading(false);
     }
@@ -109,33 +108,89 @@ export default function Dashboard() {
     return true; // 'ALL'
   });
 
-  if (loading) {
-    return (
-      <div className="w-24 h-24 flex items-center justify-center animate-pop-up">
-        <DotLottieReact src="/loading.json" loop autoplay />
-      </div>
-    );
-  }
+  
+  const [showSpinner, setShowSpinner] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  if (error) {
-    return (
-      <div className="flex min-h-screen items-center justify-center p-4 text-lg font-semibold text-red-600">
-        Error: {error}
-      </div>
-    );
-  }
+    useEffect(() => {
+      if (!loading) {
+        const startExitTimer = setTimeout(() => {
+          setIsExiting(true);
+        }, 1200);
+  
+        const unmountTimer = setTimeout(() => {
+          setShowSpinner(false);
+        }, 1600);
+  
+        return () => {
+          clearTimeout(startExitTimer);
+          clearTimeout(unmountTimer);
+        };
+      } else {
+        setShowSpinner(true);
+        setIsExiting(false);
+      }
+    }, [loading]);
+
+  if (showSpinner) {
+      return (
+        <div className="flex min-h-screen items-center justify-center">
+          <div
+            className={`w-24 h-24 flex items-center justify-center animate__animated ${
+              isExiting ? "animate__fadeOut" : "animate__fadeIn"
+            }`}
+            style={{ animationDuration: "200ms" }}
+          >
+            <DotLottieReact src="/loading.json" loop autoplay />
+          </div>
+        </div>
+      );
+    }
+  
+    if (errorMessage) {
+      return (
+        <div className="flex min-h-screen flex-col items-center justify-center p-4">
+          <div className="text-lg font-semibold text-red-600 mb-4">
+            {errorMessage}
+          </div>
+          <button
+            onClick={() => navigate("/")}
+            className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime transition-all text-sm shadow cursor-pointer"
+          >
+            ← Kembali
+          </button>
+        </div>
+      );
+    }
+
+  // if (loading) {
+  //   return (
+  //     <div className="w-24 h-24 flex items-center justify-center animate-pop-up">
+  //       <DotLottieReact src="/loading.json" loop autoplay />
+  //     </div>
+  //   );
+  // }
+
+  // if (error) {
+  //   return (
+  //     <div className="flex min-h-screen items-center justify-center p-4 text-lg font-semibold text-red-600">
+  //       Error: {error}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="flex min-h-screen flex-col items-center p-4 sm:p-8 gap-6 max-w-5xl mx-auto">
       {/* Back Button */}
-      <div className="w-full max-w-xl mb-0 flex justify-start">
+      <div className="w-full max-w-4xl mb-0 flex justify-start">
         <button
-          type="button"
-          onClick={() => navigate("/")}
-          className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer"
-        >
-          ← Kembali
-        </button>
+      type="button"
+      onClick={() => navigate("/")}
+      className="w-full sm:w-auto px-5 py-2.5 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime hover:scale-102 transition-all text-sm shadow cursor-pointer text-left sm:text-center"
+    >
+      ← Kembali
+    </button>
       </div>
 
       {/* Header */}

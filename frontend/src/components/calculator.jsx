@@ -179,6 +179,8 @@ export default function Calculator() {
     reclubData,
   ]);
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   const handleFinalSave = async () => {
     const formattedPicName = picName.trim().toUpperCase();
 
@@ -201,36 +203,44 @@ export default function Calculator() {
       kas_in: parseFloat(kasIn) || 0,
       kas_out: hasKasOut ? parseFloat(kasOut) || 0 : 0,
       description,
-      pic: formattedPicName,
+      // pic: formattedPicName,
     };
 
     try {
-      setIsSubmitting(true);
-      setErrorMessage("");
+  setIsSubmitting(true);
+  setErrorMessage("");
 
-      await apiCreateReportKeuangan(payload);
+  console.log("PIC:", formattedPicName);
+  await apiCreateReportKeuangan(payload);
+  
+  // 1. Show the success message first
+  setSuccessMessage("Laporan berhasil disimpan!");
 
-      // Reset form fields on success
-      setTanggal(today);
-      setSelectedLapanganId("");
-      setSelectedReclubId("");
-      setPlayerInternal("");
-      setPlayerExternal("");
-      setTips("");
-      setPatunganPerInternal(0);
-      setKasIn(0);
-      setHasKasOut(false);
-      setKasOut("");
-      setDescription("");
+  // 2. Wait 1.5 seconds before closing the modal and clearing states
+  setTimeout(() => {
+    setTanggal(today);
+    setSelectedLapanganId("");
+    setSelectedReclubId("");
+    setPlayerInternal("");
+    setPlayerExternal("");
+    setTips("");
+    setPatunganPerInternal(0);
+    setKasIn(0);
+    setHasKasOut(false);
+    setKasOut("");
+    setDescription("");
 
-      setIsModalOpen(false);
-      setPicName("");
-    } catch (err) {
-      console.error("Error creating report:", err);
-      setErrorMessage(err.message || "Gagal menyimpan laporan.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    setIsModalOpen(false);
+    setPicName("");
+    setSuccessMessage("");
+  }, 1500);
+
+} catch (err) {
+  console.error("Error creating report:", err);
+  setErrorMessage(err.message || "Gagal menyimpan laporan.");
+} finally {
+  setIsSubmitting(false);
+}
   };
 
   if (showSpinner) {
@@ -258,7 +268,7 @@ export default function Calculator() {
           onClick={() => navigate("/")}
           className="px-4 py-2 bg-pkk-green text-pkk-cream font-semibold rounded-lg hover:bg-pkk-lime transition-all text-sm shadow cursor-pointer"
         >
-          ← Kembali ke Beranda
+          ← Kembali
         </button>
       </div>
     );
@@ -561,6 +571,15 @@ export default function Calculator() {
               Masukkan nama penanggung jawab (PIC) untuk menyimpan transaksi
               ini.
             </p>
+
+            {successMessage && (
+  <div className="mb-4 p-3 bg-pkk-green border border-pkk-lime text-pkk-cream text-sm rounded-lg flex items-center gap-2 animate__animated animate__fadeIn">
+    <svg className="w-5 h-5 text-pkk-cream flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <span>{successMessage}</span>
+  </div>
+)}
 
             {errorMessage && (
               <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-sm rounded">
