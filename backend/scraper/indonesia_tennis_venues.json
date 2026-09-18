@@ -1,0 +1,1724 @@
+[
+  {
+    "venue_id": null,
+    "venue_name": "Smashpoint Arena",
+    "location": "4.61·  Kota Jakarta Barat",
+    "starting_price": "Rp0"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Epic Court",
+    "location": "Kota Manado",
+    "starting_price": "Rp0"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Epic Tennis Arena",
+    "location": "Kota Surabaya",
+    "starting_price": "Rp0"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Ardjuna",
+    "location": "Kota Malang",
+    "starting_price": "Rp0"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Biru Tenis Club @ The Blue Table Harbourbay",
+    "location": "Kota Batam",
+    "starting_price": "Rp0"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Bengawan Sport Centre",
+    "location": "4.84·  Kota Surakarta",
+    "starting_price": "Rp15,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Bay Arena Kenjeran Surabaya",
+    "location": "4.91·  Kota Surabaya",
+    "starting_price": "Rp25,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "RG Padel & RGs Tennis",
+    "location": "5.00·  Kabupaten Jepara",
+    "starting_price": "Rp25,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Merdeka Klaten",
+    "location": "4.91·  Kabupaten Klaten",
+    "starting_price": "Rp25,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Situ Gintung",
+    "location": "4.44·  Kota Tangerang Selatan",
+    "starting_price": "Rp25,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tidal Sports Center Cileungsi",
+    "location": "4.59·  Kabupaten Bogor",
+    "starting_price": "Rp30,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "VATA Courts Cibubur",
+    "location": "Kabupaten Bogor",
+    "starting_price": "Rp30,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arco Tennis Club",
+    "location": "Kota Depok",
+    "starting_price": "Rp30,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GRIT Istana Bunga",
+    "location": "4.95·  Kabupaten Bandung Barat",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tatabumi Tennis Court",
+    "location": "4.83·  Kabupaten Sleman",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gor Bulog Kanwil Sulteng",
+    "location": "5.00·  Kota Palu",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "HW Sports Center",
+    "location": "5.00·  Kabupaten Pekalongan",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Mitra Dago",
+    "location": "4.94·  Kota Bandung",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": "1",
+    "venue_name": "Tennis Graha Sampurna Indah",
+    "location": "4.60·  Kota Surabaya",
+    "starting_price": "Rp35,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Dreams Arena - BSD",
+    "location": "4.95·  Kabupaten Tangerang",
+    "starting_price": "Rp39,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Permata Tennis Court",
+    "location": "4.80·  Kabupaten Bandung Barat",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Margomulyo Sports Center (MSC)",
+    "location": "4.73·  Kota Surabaya",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Terre Arena",
+    "location": "4.81·  Kabupaten Tangerang",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": "3",
+    "venue_name": "Lapangan Graha Cinere 3",
+    "location": "3.53·  Kota Depok",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Kemang Cage",
+    "location": "4.72·  Kota Jakarta Selatan",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "PLN UPT MADIUN SPORT CENTRE",
+    "location": "4.85·  Kota Madiun",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "REDWOOD TRAINING CENTER",
+    "location": "5.00·  Kabupaten Lombok Barat",
+    "starting_price": "Rp40,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "TSC (TSM Sport Centre) - Klayan, Cirebon",
+    "location": "4.71·  Kota Cirebon",
+    "starting_price": "Rp45,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Hulahoop Wellness Yogyakarta",
+    "location": "4.11·  Kabupaten Sleman",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Adhi Tennis Court",
+    "location": "4.79·  Kota Jakarta Selatan",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "JIEP Sports Club",
+    "location": "4.68·  Kota Jakarta Timur",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "MXL Ground",
+    "location": "4.84·  Kota Jakarta Utara",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Prodigy Padel",
+    "location": "4.78·  Kabupaten Tangerang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ultradome Padel Tennis Lounge",
+    "location": "4.86·  Kota Jakarta Utara",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Modern Golf Sports Club",
+    "location": "4.63·  Kota Tangerang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "UB Sport Center",
+    "location": "4.71·  Kota Malang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Cobra Champion",
+    "location": "4.90·  Kota Tangerang Selatan",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Longitude Tennis Arena",
+    "location": "4.99·  Kabupaten Tangerang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Baladika Tenis",
+    "location": "4.91·  Kota Serang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Epic Sport Center - Tennis & Pickle",
+    "location": "4.88·  Kota Bekasi",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Pusdikarmed",
+    "location": "5.00·  Kota Cimahi",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Bwalk Tennis Court Malang",
+    "location": "4.44·  Kabupaten Malang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "K3 Tennis And Padel Simulator",
+    "location": "4.86·  Kota Tangerang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arjuna Sport Center",
+    "location": "5.00·  Kabupaten Malang",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "SINKONA TENNIS COURT",
+    "location": "Kota Bandung",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "DARMO BARU TIMUR TENNIS COURT",
+    "location": "Kota Surabaya",
+    "starting_price": "Rp50,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "JJTC Bukitsari Tennis Park",
+    "location": "4.92·  Kota Semarang",
+    "starting_price": "Rp55,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Airo Sport",
+    "location": "5.00·  Kota Surabaya",
+    "starting_price": "Rp55,500"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Indonesia Muda",
+    "location": "4.69·  Kota Tangerang Selatan",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Raflesia Taman  Yasmin",
+    "location": "4.80·  Kota Bogor",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Basketball Tennis C3 Serpong",
+    "location": "Kota Tangerang Selatan",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ide Tennis Court",
+    "location": "4.93·  Kota Jakarta Timur",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Oase Arena Kota Tasikmalaya",
+    "location": "Kota Tasikmalaya",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Unila Panglima Polim",
+    "location": "Kota Bandar Lampung",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Outdoor Ajendam Malang",
+    "location": "4.60·  Kota Malang",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "FunK Court",
+    "location": "4.50·  Kota Bekasi",
+    "starting_price": "Rp60,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "WBA Sport Center",
+    "location": "4.66·  Kabupaten Sidoarjo",
+    "starting_price": "Rp65,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Dharmais Arena",
+    "location": "4.91·  Kabupaten Bogor",
+    "starting_price": "Rp65,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ciangsana Cibubur Tennis Court",
+    "location": "4.92·  Kabupaten Bogor",
+    "starting_price": "Rp65,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "X25 Tennis & Padel Court Samarinda",
+    "location": "4.80·  Kota Samarinda",
+    "starting_price": "Rp65,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GREEN TENNIS COURT",
+    "location": "5.00·  Kota Kediri",
+    "starting_price": "Rp65,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Serva Social Club Depok",
+    "location": "4.83·  Kota Depok",
+    "starting_price": "Rp69,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Grand Central Sport Center",
+    "location": "4.78·  Kota Jakarta Utara",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gardenia Tennis Court",
+    "location": "4.72·  Kota Tangerang Selatan",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Gardenslam Tennis Park Purwokerto",
+    "location": "4.87·  Kabupaten Banyumas",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Universitas Lampung",
+    "location": "4.75·  Kota Bandar Lampung",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Nawa Sport Club",
+    "location": "4.91·  Kabupaten Sukoharjo",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Outdoor Bengrah",
+    "location": "Kota Bandung",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Deuce Arena",
+    "location": "4.39·  Kota Jakarta Barat",
+    "starting_price": "Rp70,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Griya Depok Asri (GDA)",
+    "location": "4.93·  Kota Depok",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Jubilee Tennis Court",
+    "location": "4.68·  Kota Tangerang Selatan",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Off Court",
+    "location": "4.87·  Kota Tangerang Selatan",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Korem",
+    "location": "4.78·  Kota Bogor",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Kings Court",
+    "location": "4.97·  Kota Jakarta Timur",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Villa Citra",
+    "location": "4.48·  Kota Bandar Lampung",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Royal Player Club",
+    "location": "4.80·  Kota Makassar",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Puri Anggrek Mas Tennis Court",
+    "location": "4.89·  Kota Depok",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis GHTC Bekasi",
+    "location": "4.88·  Kota Bekasi",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Badia Court Pangandaran",
+    "location": "4.93·  Kabupaten Pangandaran",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ulun Padel 101 Sport Centre",
+    "location": "4.85·  Kota Banjarmasin",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "UNJANI SPORTS CENTER",
+    "location": "4.37·  Kota Cimahi",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "1.3 Taman Jajan Sportsclub By DOOgether",
+    "location": "4.54·  Kota Tangerang Selatan",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Putra Yudha Tennis Court",
+    "location": "5.00·  Kota Malang",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Club House CitraLand",
+    "location": "Kota Bandar Lampung",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Indoor & Outdoor Sesko TNI",
+    "location": "4.67·  Kota Bandung",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sunrise Tennis & Pickleball Court",
+    "location": "4.87·  Kota Bogor",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Outdoor Unesa Ketintang",
+    "location": "Kota Surabaya",
+    "starting_price": "Rp75,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Nordic Courts",
+    "location": "4.87·  Kota Jakarta Barat",
+    "starting_price": "Rp77,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Padelnis Sports",
+    "location": "4.93·  Kota Cirebon",
+    "starting_price": "Rp77,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Vlocity Arena",
+    "location": "4.86·  Kota Jakarta Barat",
+    "starting_price": "Rp78,000"
+  },
+  {
+    "venue_id": "2",
+    "venue_name": "Galaxy Sports Center Pik 2",
+    "location": "4.87·  Kabupaten Tangerang",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Matic Kedoya",
+    "location": "4.92·  Kota Jakarta Barat",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Pusdik Lantas",
+    "location": "4.59·  Kota Tangerang Selatan",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Taman Cipulir Estate",
+    "location": "4.75·  Kota Tangerang",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Padel Matic Suju",
+    "location": "4.88·  Kota Bandung",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Budi Indah Tennis Court, Batu Ceper, Tangerang",
+    "location": "5.00·  Kota Tangerang",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Kenzo Sport Arena",
+    "location": "4.53·  Kota Salatiga",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "YG Court",
+    "location": "4.98·  Kota Bandar Lampung",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arcadia Tennis Club",
+    "location": "Kota Depok",
+    "starting_price": "Rp80,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Aria Racquet Arena",
+    "location": "4.96·  Kota Tangerang Selatan",
+    "starting_price": "Rp85,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Beyond The Court",
+    "location": "4.93·  Kota Jakarta Timur",
+    "starting_price": "Rp85,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "LAPANGAN TENNIS NEUSU KOTA BANDA ACEH",
+    "location": "5.00·  Kota Banda Aceh",
+    "starting_price": "Rp85,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Outdoor Pusdikku",
+    "location": "4.89·  Kota Bandung",
+    "starting_price": "Rp85,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Indoor & Outdoor Pussenkav",
+    "location": "4.63·  Kota Bandung",
+    "starting_price": "Rp85,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "TennisBay @ Wiladatika Cibubur",
+    "location": "4.82·  Kota Depok",
+    "starting_price": "Rp88,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Forte Sport",
+    "location": "4.47·  Kota Tangerang Selatan",
+    "starting_price": "Rp88,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ayo Sports Club",
+    "location": "4.91·  Kota Surabaya",
+    "starting_price": "Rp88,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sriwedari Cibubur Tennis Court",
+    "location": "4.75·  Kota Depok",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Pakuwon Golf & Family Club",
+    "location": "4.80·  Kota Surabaya",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "O2 Court",
+    "location": "Kota Jakarta Pusat",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Exchange Court",
+    "location": "4.80·  Kota Balikpapan",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Hankam Cibubur Tennis Court",
+    "location": "4.85·  Kota Jakarta Timur",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Indoor Perhutani",
+    "location": "4.67·  Kota Bandung",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Clubhouse Depok",
+    "location": "Kota Depok",
+    "starting_price": "Rp90,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Indoor Permata Hijau - Purwokerto",
+    "location": "4.84·  Kabupaten Banyumas",
+    "starting_price": "Rp95,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Point Smash",
+    "location": "5.00·  Kabupaten Sukoharjo",
+    "starting_price": "Rp95,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Matic PIK2",
+    "location": "4.90·  Kabupaten Tangerang",
+    "starting_price": "Rp99,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Little Racquet Club",
+    "location": "4.98·  Kabupaten Bogor",
+    "starting_price": "Rp99,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Comum Padel & Tennis Simulator",
+    "location": "4.64·  Kota Tangerang",
+    "starting_price": "Rp99,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Pitcourt",
+    "location": "4.73·  Kota Tangerang Selatan",
+    "starting_price": "Rp99,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Olympus Tennis - Ancol",
+    "location": "4.84·  Kota Jakarta Utara",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Orion Tennis Court",
+    "location": "4.85·  Kota Jakarta Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GOAT Tennis Arena",
+    "location": "4.62·  Kota Tangerang Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Walang",
+    "location": "4.89·  Kota Jakarta Utara",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Buncit Indah Sports Club",
+    "location": "4.89·  Kota Jakarta Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Cross Court Tennis & Pickleball",
+    "location": "4.91·  Kota Semarang",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Bumi Pancasona Sports Club",
+    "location": "4.92·  Kabupaten Bandung Barat",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Daily Court",
+    "location": "4.92·  Kota Jakarta Barat",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Playpro Sports Arena",
+    "location": "4.72·  Kota Bekasi",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Solo Padel Club",
+    "location": "4.85·  Kabupaten Karanganyar",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "ATB Tennis",
+    "location": "4.90·  Kota Bogor",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Wiyata Zeni Tennis Court",
+    "location": "4.71·  Kota Bogor",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Groove",
+    "location": "4.98·  Kabupaten Bekasi",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Puri Taman Sari Tennis Court",
+    "location": "4.78·  Kota Cirebon",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Pondok Cabe Tennis Court",
+    "location": "4.94·  Kota Tangerang Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "RR Tennis Court",
+    "location": "4.95·  Kota Tangerang Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Hore Padel & Tenis",
+    "location": "4.97·  Kota Surakarta",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sempusari Sport Center",
+    "location": "5.00·  Kabupaten Jember",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Twelve Tennis Court",
+    "location": "4.93·  Kota Bekasi",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Palm Court Serua",
+    "location": "Kota Tangerang Selatan",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "ICON Clubhouse By DOOgether",
+    "location": "Kabupaten Tangerang",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Agape Padel & Tennis Court",
+    "location": "4.88·  Kota Samarinda",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Jambuluwuk Batu Sports Center",
+    "location": "4.75·  Kota Batu",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "TekMIRA Sport",
+    "location": "4.75·  Kota Bandung",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Dewi Sri Court, Kota Tegal",
+    "location": "5.00·  Kota Tegal",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GOR Tennis New Armada",
+    "location": "4.67·  Kabupaten Magelang",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "MATCH POINT Tennis Court",
+    "location": "5.00·  Kabupaten Sleman",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis EL Hotel Kartika Wijaya Batu",
+    "location": "5.00·  Kota Batu",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Indoor Ditajenad",
+    "location": "5.00·  Kota Bandung",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "VIBORA By Grandeur",
+    "location": "Kota Surabaya",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Leoni Tenis",
+    "location": "5.00·  Kota Jakarta Timur",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Court Palem Semi Karawaci",
+    "location": "4.40·  Kabupaten Tangerang",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Boenglon Courts",
+    "location": "5.00·  Kabupaten Kutai Timur",
+    "starting_price": "Rp100,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Club SOL",
+    "location": "4.87·  Kabupaten Tangerang",
+    "starting_price": "Rp105,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Playcourt Padel Pondok Labu",
+    "location": "4.77·  Kota Depok",
+    "starting_price": "Rp109,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Sim Tennis Court Pondok Labu",
+    "location": "4.71·  Kota Jakarta Selatan",
+    "starting_price": "Rp110,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Smashlab",
+    "location": "4.85·  Kota Makassar",
+    "starting_price": "Rp110,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "RajawaliSC",
+    "location": "5.00·  Kota Malang",
+    "starting_price": "Rp110,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "F2C Court",
+    "location": "4.70·  Kabupaten Sleman",
+    "starting_price": "Rp110,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sport Center Cibabat Park",
+    "location": "3.76·  Kota Cimahi",
+    "starting_price": "Rp115,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Playcourt Tennis Depok",
+    "location": "4.66·  Kota Depok",
+    "starting_price": "Rp119,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sportive Hub",
+    "location": "4.87·  Kota Cimahi",
+    "starting_price": "Rp119,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Patraland Tennis Court - Patra Kuningan",
+    "location": "4.84·  Kota Jakarta Selatan",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ancol Tennis Warehouse",
+    "location": "4.84·  Kota Jakarta Utara",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Patraland Tennis Court - Dukuh Patra",
+    "location": "4.85·  Kota Jakarta Selatan",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Homeground Signature Pluit",
+    "location": "4.89·  Kota Jakarta Barat",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Inside Out Tennis Club At Lebak Lestari",
+    "location": "4.73·  Kota Jakarta Selatan",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Racquet Club Sentul",
+    "location": "4.88·  Kabupaten Bogor",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": "88",
+    "venue_name": "Court 88",
+    "location": "4.71·  Kota Jakarta Selatan",
+    "starting_price": "Rp120,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Bukit Pratama Tennis Court",
+    "location": "4.88·  Kota Jakarta Selatan",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Top Spin Arena",
+    "location": "4.83·  Kota Makassar",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis SMESCO",
+    "location": "4.40·  Kabupaten Sidoarjo",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GOR Pamularsih",
+    "location": "4.73·  Kota Semarang",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "KSC Racquet Club",
+    "location": "4.81·  Kota Jakarta Barat",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "CGE Arena",
+    "location": "4.82·  Kota Depok",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Jacinto Tennis Sport",
+    "location": "4.77·  Kota Tangerang Selatan",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Samator Tennis Court",
+    "location": "4.40·  Kota Surabaya",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gading Mas Racquet Club",
+    "location": "4.54·  Kota Jakarta Utara",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Indoor Ajendam Bandung",
+    "location": "Kota Bandung",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Guntur Tennis Court",
+    "location": "4.67·  Kota Jakarta Selatan",
+    "starting_price": "Rp125,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tennis Krida Court",
+    "location": "4.80·  Kota Jakarta Timur",
+    "starting_price": "Rp130,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Avantgarde Tennis & Pickle Court Pluit",
+    "location": "4.55·  Kota Jakarta Utara",
+    "starting_price": "Rp130,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "HOLA! Padel & Tennis Club",
+    "location": "4.91·  Kota Balikpapan",
+    "starting_price": "Rp130,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Solace Tennis Club By The Araya",
+    "location": "4.95·  Kota Malang",
+    "starting_price": "Rp130,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Saint Joseph Sports Facilities",
+    "location": "5.00·  Kota Surakarta",
+    "starting_price": "Rp130,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Wins Arena - Kuningan",
+    "location": "4.66·  Kota Jakarta Selatan",
+    "starting_price": "Rp134,824"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Goat Arena Bandung",
+    "location": "4.75·  Kota Bandung",
+    "starting_price": "Rp135,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Pegasus By Courterra",
+    "location": "4.96·  Kota Tangerang Selatan",
+    "starting_price": "Rp135,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Encanto Tennis",
+    "location": "4.81·  Kota Depok",
+    "starting_price": "Rp135,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Playcourt Tennis Litbang Pondok Labu",
+    "location": "4.58·  Kota Depok",
+    "starting_price": "Rp139,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Nara Tennis Court Outdoor",
+    "location": "4.91·  Kota Jakarta Selatan",
+    "starting_price": "Rp140,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "BBS KJ Secondary Sports Field",
+    "location": "4.67·  Kota Jakarta Barat",
+    "starting_price": "Rp142,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Centre Court BSD",
+    "location": "4.97·  Kabupaten Tangerang",
+    "starting_price": "Rp145,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Ampera",
+    "location": "4.57·  Kota Jakarta Selatan",
+    "starting_price": "Rp145,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Courtehaus",
+    "location": "4.87·  Kabupaten Sleman",
+    "starting_price": "Rp145,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Cibinong Tennis Center",
+    "location": "4.85·  Kabupaten Bogor",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Tenis Girly",
+    "location": "4.83·  Kota Depok",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Olympus Prime Sports Center - Bandengan",
+    "location": "4.90·  Kota Jakarta Utara",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sekawan Court Padel & Tenis",
+    "location": "4.97·  Kabupaten Sleman",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Batavia Sports Club",
+    "location": "4.81·  Kota Jakarta Utara",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Padel Playground",
+    "location": "4.96·  Kabupaten Bogor",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tribuana Tennis Court",
+    "location": "4.73·  Kota Jakarta Timur",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Prime Padel & Tennis Club",
+    "location": "Kabupaten Cirebon",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Armor Tennis Indoor",
+    "location": "4.37·  Kota Tangerang Selatan",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Adhyaksa Sports Center",
+    "location": "5.00·  Kota Samarinda",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "YOLO Sports & Lifestyle Pluit",
+    "location": "4.33·  Kota Jakarta Utara",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tenis Indoor Rampal",
+    "location": "4.93·  Kota Malang",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Prospero Tenis Court",
+    "location": "5.00·  Kota Tangerang Selatan",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Indoor Kodiklat",
+    "location": "5.00·  Kota Bandung",
+    "starting_price": "Rp150,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lapangan Sahabat Muara Karang",
+    "location": "4.21·  Kota Jakarta Utara",
+    "starting_price": "Rp160,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Wins Arena PG - Tennis",
+    "location": "4.72·  Kota Jakarta Timur",
+    "starting_price": "Rp160,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Unity Sports Center",
+    "location": "4.83·  Kota Semarang",
+    "starting_price": "Rp160,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Court Nation",
+    "location": "5.00·  Kabupaten Bekasi",
+    "starting_price": "Rp160,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gading Slam Tennis Court",
+    "location": "4.65·  Kota Jakarta Utara",
+    "starting_price": "Rp165,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arte Padel & Tennis Club",
+    "location": "4.95·  Kota Samarinda",
+    "starting_price": "Rp165,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Metro Margomulyo Tennis Indoor",
+    "location": "4.96·  Kota Surabaya",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Ambassador Tennis",
+    "location": "4.94·  Kota Malang",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Royal Court Palmerah",
+    "location": "4.94·  Kota Jakarta Barat",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Kinderfield Jambi Racket Club",
+    "location": "5.00·  Kota Jambi",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "HQ Padel & Tennis",
+    "location": "4.95·  Kota Jakarta Selatan",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Finley Racquet Club",
+    "location": "4.92·  Kota Jakarta Timur",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "CROWN RACQUET CLUB - Tennis",
+    "location": "4.83·  Kabupaten Bekasi",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "JOI Sports And Social",
+    "location": "Kabupaten Sleman",
+    "starting_price": "Rp175,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Puri Kencana Karah Sport Center",
+    "location": "4.85·  Kota Surabaya",
+    "starting_price": "Rp180,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "MMS ARENA",
+    "location": "4.20·  Kota Jakarta Selatan",
+    "starting_price": "Rp180,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "GlobalXtreme Tennis Court",
+    "location": "5.00·  Kabupaten Malang",
+    "starting_price": "Rp180,000"
+  },
+  {
+    "venue_id": "2",
+    "venue_name": "Foreground Racquet Simulator - PIK 2",
+    "location": "4.98·  Kabupaten Tangerang",
+    "starting_price": "Rp185,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Homeground Tennis Jemursari",
+    "location": "5.00·  Kota Surabaya",
+    "starting_price": "Rp185,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Lucky Tennis Indoor",
+    "location": "4.89·  Kota Tangerang",
+    "starting_price": "Rp190,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Seba Court",
+    "location": "4.95·  Kota Jakarta Selatan",
+    "starting_price": "Rp190,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Emirates Club",
+    "location": "5.00·  Kabupaten Cirebon",
+    "starting_price": "Rp198,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Anwa Racquet Privé (ex Anwa Tennis Club)",
+    "location": "4.85·  Kota Jakarta Barat",
+    "starting_price": "Rp199,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Next Gen Pulomas",
+    "location": "4.17·  Kota Jakarta Timur",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Love Tennis Academy Sunter",
+    "location": "4.80·  Kota Jakarta Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Raquette Temple",
+    "location": "4.88·  Kota Tangerang Selatan",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Urban Racquet Club",
+    "location": "4.78·  Kota Jakarta Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "MY Tennis Club - Sunter",
+    "location": "4.91·  Kota Jakarta Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Field",
+    "location": "4.76·  Kota Jakarta Selatan",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Armor Padel & Tennis",
+    "location": "4.85·  Kota Tangerang Selatan",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "D'Sports Arena",
+    "location": "4.91·  Kabupaten Minahasa Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Court At Sunlake",
+    "location": "4.20·  Kota Jakarta Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Pluit Padel Parq (PPP)",
+    "location": "4.91·  Kota Jakarta Utara",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Istana Court",
+    "location": "5.00·  Kota Pekanbaru",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Treeside Courts",
+    "location": "4.69·  Kota Bekasi",
+    "starting_price": "Rp200,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Foreground Racquet Simulator - Pluit",
+    "location": "5.00·  Kota Jakarta Utara",
+    "starting_price": "Rp205,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "House Of Tennis Gading Serpong",
+    "location": "4.94·  Kota Tangerang Selatan",
+    "starting_price": "Rp210,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arman Tennis Court A (d/h Weedees)",
+    "location": "4.74·  Kota Depok",
+    "starting_price": "Rp220,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Permata Sport Arena - Daan Mogot",
+    "location": "4.79·  Kota Jakarta Barat",
+    "starting_price": "Rp220,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Arman Tennis Court B (d/h Weedees)",
+    "location": "4.79·  Kota Depok",
+    "starting_price": "Rp220,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "La Niny Tennis Court",
+    "location": "4.84·  Kota Jakarta Selatan",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "RacketGo Sunter",
+    "location": "4.81·  Kota Jakarta Utara",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gilatennis kebayoran lama",
+    "location": "4.64·  Kota Jakarta Selatan",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Wibowo Hadisubroto Tennis Center",
+    "location": "5.00·  Kota Cimahi",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Chemistry Tennis Court",
+    "location": "Kota Depok",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Nammos Sports & Social",
+    "location": "4.87·  Kabupaten Sleman",
+    "starting_price": "Rp225,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "British School Jakarta",
+    "location": "4.94·  Kota Tangerang Selatan",
+    "starting_price": "Rp230,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Citadel",
+    "location": "5.00·  Kota Jakarta Barat",
+    "starting_price": "Rp230,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "My Club House - Tennis",
+    "location": "4.99·  Kota Jakarta Utara",
+    "starting_price": "Rp235,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "House Of Tennis Kedoya",
+    "location": "4.84·  Kota Jakarta Barat",
+    "starting_price": "Rp240,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Antam Sports Center",
+    "location": "4.00·  Kota Jakarta Selatan",
+    "starting_price": "Rp240,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Metro Puri Tennis Indoor",
+    "location": "4.89·  Kota Jakarta Barat",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Court Puri Anandita",
+    "location": "5.00·  Kabupaten Bogor",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Raquette Temple Sunter",
+    "location": "5.00·  Kota Jakarta Utara",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Poppies Racquet Club",
+    "location": "Kota Tangerang",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "King Tennis Privé",
+    "location": "4.83·  Kota Jakarta Selatan",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Court By Baritopia",
+    "location": "5.00·  Kabupaten Barito Kuala",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis And Padel Plush Premier Medan",
+    "location": "Kota Medan",
+    "starting_price": "Rp250,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Nara Tennis Court Indoor",
+    "location": "4.76·  Kota Jakarta Selatan",
+    "starting_price": "Rp260,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "DBL Academy Jakarta East",
+    "location": "5.00·  Kota Jakarta Timur",
+    "starting_price": "Rp260,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "The Racquet Club ( TRC )",
+    "location": "4.91·  Kota Jakarta Selatan",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Jungle Tennis",
+    "location": "4.93·  Kota Jakarta Barat",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Prisma Tennis",
+    "location": "4.84·  Kota Jakarta Barat",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Trilogi Arena By Duale",
+    "location": "4.92·  Kota Jakarta Selatan",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Foreground  Racquet Simulator - Sunter",
+    "location": "5.00·  Kota Jakarta Utara",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "House Of Tennis Reserve Kebon Jeruk",
+    "location": "Kota Jakarta Barat",
+    "starting_price": "Rp275,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Exploria Court",
+    "location": "5.00·  Kota Jakarta Selatan",
+    "starting_price": "Rp280,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Open Stance Tennis Indoor",
+    "location": "Kota Jakarta Selatan",
+    "starting_price": "Rp280,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "3Nine Indoor Tennis",
+    "location": "Kota Jakarta Selatan",
+    "starting_price": "Rp285,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Maison Tennis Playcourt - Bintaro",
+    "location": "4.93·  Kota Tangerang Selatan",
+    "starting_price": "Rp290,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Foreground Racquet Simulator - Kemang",
+    "location": "4.92·  Kota Jakarta Selatan",
+    "starting_price": "Rp300,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Gandaria Tennis Arena",
+    "location": "4.95·  Kota Jakarta Selatan",
+    "starting_price": "Rp330,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Capital Racquet",
+    "location": "5.00·  Kota Jakarta Selatan",
+    "starting_price": "Rp350,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Premier Court Mitrasraya",
+    "location": "4.71·  Kota Jakarta Selatan",
+    "starting_price": "Rp375,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Tennis Indoor Andy Jaya",
+    "location": "4.61·  Kota Bekasi",
+    "starting_price": "Rp400,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Sheraton Surabaya Tennis Court",
+    "location": "5.00·  Kota Surabaya",
+    "starting_price": "Rp500,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Andy Jaya Tennis Club",
+    "location": "4.31·  Kota Bekasi",
+    "starting_price": "Rp600,000"
+  },
+  {
+    "venue_id": null,
+    "venue_name": "Menteng Tennis Club @ Common Grounds Terra",
+    "location": "4.90·  Kota Jakarta Pusat",
+    "starting_price": "Rp900,000"
+  }
+]
