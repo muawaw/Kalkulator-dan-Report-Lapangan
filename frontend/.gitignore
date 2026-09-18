@@ -9,6 +9,11 @@ lerna-debug.log*
 .env
 *.env
 
+# deploy
+.env.deploy
+*.pem
+*.ppk
+
 node_modules
 dist
 dist-ssr
