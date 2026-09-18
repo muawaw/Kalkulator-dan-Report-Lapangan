@@ -48,4 +48,7 @@ env
 # Ignore specific output files & temp logs
 curl_output.txt
 rent_tennis_venue*
+insert_scraped_data.py
+insert_scraped_data.go
+
 

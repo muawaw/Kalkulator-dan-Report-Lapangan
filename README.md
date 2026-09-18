@@ -7,15 +7,19 @@ A personal web application for managing and reporting financial data for my tenn
 **Purpose:** Help my tennis community manage financial reports and calculate court rental costs, eliminating the dependency on Google Sheets scripts that require desktop browser access on mobile devices.
 
 **Status:**
+
 - ✅ Backend: Fully functional
-- 🔄 Frontend: Partially developed
-  - ✅ Home, Configuration, and Calculator pages
-  - 🚧 Dashboard page: Placeholder (to be developed)
-  - 📋 "Hitung Extension" page: Planned (not yet developed)
+- ✅ Frontend: Fully developed
+  - ✅ Home page
+  - ✅ Configuration page
+  - ✅ Calculator page
+  - ✅ Dashboard page
+  - ✅ Extend page (Hitung Extension)
 
 ## Tech Stack
 
 ### Backend
+
 - **Language:** Go 1.27.1
 - **Framework:** Chi v5 (HTTP router)
 - **Database:** PostgreSQL
@@ -26,11 +30,14 @@ A personal web application for managing and reporting financial data for my tenn
   - `joho/godotenv` - Environment configuration
 
 ### Frontend
+
 - **Framework:** React 19
 - **Build Tool:** Vite 8
 - **Styling:** Tailwind CSS 4
 - **Routing:** React Router v7
 - **Node Version:** Module type
+- **Animation Libraries:** Framer Motion, Lottie React, dotlottie-react
+- **UI Icons:** Lucide React
 
 ## Project Structure
 
@@ -78,6 +85,7 @@ project/
 ## Features
 
 ### 1. Master Data Management (Configuration)
+
 - **Tennis Courts (Lapangan):** Create, read, update, delete court information
   - Court name
   - Hourly rental rate
@@ -89,6 +97,7 @@ project/
   - Registration fee (automatically calculates hourly rate)
 
 ### 2. Financial Calculator
+
 - Calculate court rental costs with the following inputs:
   - Court selection
   - Club schedule selection
@@ -101,6 +110,7 @@ project/
 - Save calculations as financial reports
 
 ### 3. Financial Reporting
+
 - Record daily financial transactions
   - Date
   - Cash in amount
@@ -114,6 +124,7 @@ project/
 Full API documentation is available in [backend/API_DOCUMENTATION.md](backend/API_DOCUMENTATION.md)
 
 **Main Endpoints:**
+
 - `GET /api/health` - Health check
 - `POST/GET/PUT/DELETE /api/config/lapangan` - Court management
 - `POST/GET/PUT/DELETE /api/config/reclub` - Schedule management
@@ -126,17 +137,20 @@ Full API documentation is available in [backend/API_DOCUMENTATION.md](backend/AP
 ### Backend Setup
 
 1. Navigate to backend directory:
+
    ```bash
    cd backend
    ```
 
 2. Set up environment variables:
+
    ```bash
    cp .env.example .env
    # Edit .env with your database connection details
    ```
 
 3. Start PostgreSQL database:
+
    ```bash
    docker-compose up -d
    ```
@@ -151,17 +165,20 @@ Server runs on `http://localhost:8000`
 ### Frontend Setup
 
 1. Navigate to frontend directory:
+
    ```bash
    cd frontend
    ```
 
 2. Set up environment variables:
+
    ```bash
    cp .env.example .env
    # Edit .env with API configuration
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -176,12 +193,14 @@ Frontend runs on `http://localhost:5173` (default Vite port)
 ## Environment Configuration
 
 ### Backend (.env)
+
 ```
 DB_CONN="host=localhost user=postgres password=postgres dbname=postgres sslmode=disable"
 API_KEY=TEST_API_KEY
 ```
 
 ### Frontend (.env)
+
 ```
 VITE_API_BASE_URL=http://localhost:5173
 VITE_API_KEY=YOUR_API_KEY
@@ -191,18 +210,21 @@ ALLOWED_USERS=User1,User2,User3
 ## Development Scripts
 
 ### Frontend
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
 
 ### Backend
+
 - `go run cmd/*.go` - Run server
 - Database migrations are managed via the migration files in `internal/adapters/postgres/migrations/`
 
 ## Database
 
 PostgreSQL is used for data persistence. The database schema includes:
+
 - Master data tables for courts (lapangan) and schedules (reclub)
 - Financial report table (report_keuangan)
 
@@ -210,8 +232,7 @@ Database is configured via Docker Compose for easy setup.
 
 ## Future Development
 
-- ✋ Dashboard page - Statistics and financial summaries
-- 🔄 Hitung Extension page - Additional calculation features (planned)
+- 🔄 Additional features and enhancements to existing pages
 
 ## Notes
 
@@ -231,15 +252,19 @@ Aplikasi web pribadi untuk mengelola dan melaporkan data keuangan komunitas teni
 **Tujuan:** Membantu komunitas tenis saya mengelola laporan keuangan dan menghitung biaya sewa lapangan, menghilangkan ketergantungan pada skrip Google Sheets yang memerlukan akses browser desktop di perangkat mobile.
 
 **Status:**
+
 - ✅ Backend: Berfungsi penuh
-- 🔄 Frontend: Sebagian dikembangkan
-  - ✅ Halaman Home, Configuration, dan Calculator
-  - 🚧 Halaman Dashboard: Placeholder (akan dikembangkan)
-  - 📋 Halaman "Hitung Extension": Direncanakan (belum dikembangkan)
+- ✅ Frontend: Sepenuhnya dikembangkan
+  - ✅ Halaman Home
+  - ✅ Halaman Configuration
+  - ✅ Halaman Calculator
+  - ✅ Halaman Dashboard
+  - ✅ Halaman Extend (Hitung Extension)
 
 ## Tech Stack
 
 ### Backend
+
 - **Bahasa:** Go 1.27.1
 - **Framework:** Chi v5 (HTTP router)
 - **Database:** PostgreSQL
@@ -250,11 +275,14 @@ Aplikasi web pribadi untuk mengelola dan melaporkan data keuangan komunitas teni
   - `joho/godotenv` - Konfigurasi environment
 
 ### Frontend
+
 - **Framework:** React 19
 - **Build Tool:** Vite 8
 - **Styling:** Tailwind CSS 4
 - **Routing:** React Router v7
 - **Node Version:** Module type
+- **Animation Libraries:** Framer Motion, Lottie React, dotlottie-react
+- **UI Icons:** Lucide React
 
 ## Struktur Proyek
 
@@ -302,6 +330,7 @@ project/
 ## Fitur
 
 ### 1. Manajemen Data Master (Konfigurasi)
+
 - **Lapangan Tenis (Lapangan):** Buat, baca, perbarui, hapus informasi lapangan
   - Nama lapangan
   - Tarif sewa per jam
@@ -313,6 +342,7 @@ project/
   - Biaya pendaftaran (secara otomatis menghitung tarif per jam)
 
 ### 2. Kalkulator Keuangan
+
 - Hitung biaya sewa lapangan dengan input berikut:
   - Pemilihan lapangan
   - Pemilihan jadwal klub
@@ -325,6 +355,7 @@ project/
 - Simpan perhitungan sebagai laporan keuangan
 
 ### 3. Pelaporan Keuangan
+
 - Catat transaksi keuangan harian
   - Tanggal
   - Jumlah kas masuk
@@ -338,6 +369,7 @@ project/
 Dokumentasi API lengkap tersedia di [backend/API_DOCUMENTATION.md](backend/API_DOCUMENTATION.md)
 
 **Endpoint Utama:**
+
 - `GET /api/health` - Pemeriksaan kesehatan
 - `POST/GET/PUT/DELETE /api/config/lapangan` - Manajemen lapangan
 - `POST/GET/PUT/DELETE /api/config/reclub` - Manajemen jadwal
@@ -350,17 +382,20 @@ Dokumentasi API lengkap tersedia di [backend/API_DOCUMENTATION.md](backend/API_D
 ### Setup Backend
 
 1. Navigasi ke direktori backend:
+
    ```bash
    cd backend
    ```
 
 2. Setup variabel environment:
+
    ```bash
    cp .env.example .env
    # Edit .env dengan detail koneksi database Anda
    ```
 
 3. Jalankan database PostgreSQL:
+
    ```bash
    docker-compose up -d
    ```
@@ -375,17 +410,20 @@ Server berjalan di `http://localhost:8000`
 ### Setup Frontend
 
 1. Navigasi ke direktori frontend:
+
    ```bash
    cd frontend
    ```
 
 2. Setup variabel environment:
+
    ```bash
    cp .env.example .env
    # Edit .env dengan konfigurasi API
    ```
 
 3. Install dependensi:
+
    ```bash
    npm install
    ```
@@ -400,12 +438,14 @@ Frontend berjalan di `http://localhost:5173` (port default Vite)
 ## Konfigurasi Environment
 
 ### Backend (.env)
+
 ```
 DB_CONN="host=localhost user=postgres password=postgres dbname=postgres sslmode=disable"
 API_KEY=TEST_API_KEY
 ```
 
 ### Frontend (.env)
+
 ```
 VITE_API_BASE_URL=http://localhost:5173
 VITE_API_KEY=YOUR_API_KEY
@@ -415,18 +455,21 @@ ALLOWED_USERS=User1,User2,User3
 ## Script Pengembangan
 
 ### Frontend
+
 - `npm run dev` - Jalankan development server
 - `npm run build` - Build untuk production
 - `npm run lint` - Jalankan ESLint
 - `npm run preview` - Preview production build
 
 ### Backend
+
 - `go run cmd/*.go` - Jalankan server
 - Migrasi database dikelola melalui file migrasi di `internal/adapters/postgres/migrations/`
 
 ## Database
 
 PostgreSQL digunakan untuk persistensi data. Skema database mencakup:
+
 - Tabel data master untuk lapangan (lapangan) dan jadwal (reclub)
 - Tabel laporan keuangan (report_keuangan)
 
@@ -434,8 +477,7 @@ Database dikonfigurasi melalui Docker Compose untuk setup yang mudah.
 
 ## Pengembangan Lebih Lanjut
 
-- ✋ Halaman Dashboard - Statistik dan ringkasan keuangan
-- 🔄 Halaman Hitung Extension - Fitur perhitungan tambahan (direncanakan)
+- 🔄 Fitur tambahan dan peningkatan untuk halaman yang ada
 
 ## Catatan
 
